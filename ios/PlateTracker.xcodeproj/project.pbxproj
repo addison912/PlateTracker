@@ -27,8 +27,6 @@
 		202976561E60C88E005F1E47 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202976551E60C88E005F1E47 /* AssetsLibrary.framework */; };
 		202976571E60CB2B005F1E47 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2029764D1E60C7DF005F1E47 /* opencv2.framework */; };
 		202976581E60CB2B005F1E47 /* tesseract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202976511E60C85C005F1E47 /* tesseract.framework */; };
-		202976DF1E6125B7005F1E47 /* openalpr.conf in Resources */ = {isa = PBXBuildFile; fileRef = 202976DD1E6125B7005F1E47 /* openalpr.conf */; };
-		202976E01E6125B7005F1E47 /* runtime_data in Resources */ = {isa = PBXBuildFile; fileRef = 202976DE1E6125B7005F1E47 /* runtime_data */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -44,6 +42,8 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		D05CE238DCDE40AF963CB870 /* libRNOpenAlpr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F9B8922A5248C1821220A3 /* libRNOpenAlpr.a */; };
+		FF8365B921F9AC30002489EB /* openalpr.conf in Resources */ = {isa = PBXBuildFile; fileRef = FF8365B521F9A61A002489EB /* openalpr.conf */; };
+		FF8365BA21F9AC30002489EB /* runtime_data in Resources */ = {isa = PBXBuildFile; fileRef = FF8365B621F9A61A002489EB /* runtime_data */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -279,6 +279,8 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		FF8365B521F9A61A002489EB /* openalpr.conf */ = {isa = PBXFileReference; lastKnownFileType = text; name = openalpr.conf; path = "../node_modules/react-native-openalpr/ios/Frameworks/openalpr.framework/openalpr.conf"; sourceTree = "<group>"; };
+		FF8365B621F9A61A002489EB /* runtime_data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = runtime_data; path = "../node_modules/react-native-openalpr/ios/Frameworks/openalpr.framework/runtime_data"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -516,11 +518,14 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				FF8365B521F9A61A002489EB /* openalpr.conf */,
+				FF8365B621F9A61A002489EB /* runtime_data */,
 				13B07FAE1A68108700A75B9A /* PlateTracker */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* PlateTrackerTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2029764C1E60C7DF005F1E47 /* Frameworks */,
+				FF83659A21F9A07A002489EB /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -535,6 +540,14 @@
 				2D02E4901E0B4A5D006451C7 /* PlateTracker-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FF83659A21F9A07A002489EB /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				09F9B8922A5248C1821220A3 /* libRNOpenAlpr.a */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -908,9 +921,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF8365B921F9AC30002489EB /* openalpr.conf in Resources */,
+				FF8365BA21F9AC30002489EB /* runtime_data in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				202976E01E6125B7005F1E47 /* runtime_data in Resources */,
-				202976DF1E6125B7005F1E47 /* openalpr.conf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
