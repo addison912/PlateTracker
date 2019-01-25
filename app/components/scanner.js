@@ -4,7 +4,7 @@ import { AppRegistry, StyleSheet, Text, View, StatusBar } from "react-native";
 import Camera from "./camera";
 import styles from "../styles/index";
 
-export default class AndroidCamera extends React.Component {
+export default class PlateTracker extends React.Component {
   constructor(props) {
     super(props);
 
@@ -27,6 +27,7 @@ export default class AndroidCamera extends React.Component {
   };
 
   render() {
+    console.log("scanner render");
     return (
       <View style={styles.container}>
         <StatusBar animated hidden />
@@ -52,4 +53,4 @@ export default class AndroidCamera extends React.Component {
   }
 }
 
-AppRegistry.registerComponent("AndroidCamera", () => AndroidCamera);
+AppRegistry.registerComponent("PlateTracker", () => PlateTracker);

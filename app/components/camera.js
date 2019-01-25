@@ -54,7 +54,7 @@ export default class Camera extends Component {
     aspect: CameraManager.Aspect.fill,
     captureQuality: CameraManager.CaptureQuality.high,
     country: "us",
-    plateOutlineColor: "#0028ff",
+    plateOutlineColor: "#00ff00",
     showPlateOutline: true,
     rotateMode: CameraManager.RotateMode.off,
     torchMode: CameraManager.TorchMode.off,
@@ -92,7 +92,7 @@ export default class Camera extends Component {
 
   render() {
     const nativeProps = convertNativeProps(this.props);
-
+    console.log("CAMERA RENDERED");
     return (
       <ALPRCamera
         mounted={this.state.mounted}
