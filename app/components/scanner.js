@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { AppRegistry, StyleSheet, Text, View, StatusBar } from "react-native";
 
-import Camera from "./app/components/camera.js";
-import styles from "./styles/index";
+import Camera from "./camera";
+import styles from "../styles/index";
 
-export default class PlateTracker extends React.Component {
+export default class AndroidCamera extends React.Component {
   constructor(props) {
     super(props);
 
@@ -52,4 +52,4 @@ export default class PlateTracker extends React.Component {
   }
 }
 
-AppRegistry.registerComponent("PlateTracker", () => PlateTracker);
+AppRegistry.registerComponent("AndroidCamera", () => AndroidCamera);
