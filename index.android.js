@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { AppRegistry, StyleSheet, Text, View, StatusBar } from "react-native";
 
-import Camera from "./components/camera.js";
+import Camera from "./app/components/camera.js";
 import styles from "./styles/index";
 
 export default class PlateTracker extends React.Component {
