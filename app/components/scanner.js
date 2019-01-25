@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { AppRegistry, StyleSheet, Text, View, StatusBar } from "react-native";
 
 import Camera from "./camera";
-import styles from "../styles/index";
+import styles from "../styles/scanner";
 
 export default class PlateTracker extends React.Component {
   constructor(props) {
@@ -14,20 +14,24 @@ export default class PlateTracker extends React.Component {
       camera: {
         aspect: Camera.constants.Aspect.fill
       },
-      plate: "Scan a plate"
+      plate: "Scan a plate",
+      confidence: ""
     };
   }
 
   onPlateRecognized = ({ plate, confidence }) => {
     if (confidence > 90) {
       this.setState({
-        plate
+        plate,
+        confidence
       });
     }
   };
 
   render() {
-    console.log("scanner render");
+    console.log(
+      `plate: ${this.state.plate} - confidence level: ${this.state.confidence}`
+    );
     return (
       <View style={styles.container}>
         <StatusBar animated hidden />
@@ -46,7 +50,10 @@ export default class PlateTracker extends React.Component {
           touchToFocus
         />
         <View style={styles.textContainer}>
-          <Text style={styles.text}>{this.state.plate}</Text>
+          <Text style={styles.plate}>{this.state.plate}</Text>
+          <Text style={styles.confidence}>
+            Confidence: {this.state.confidence}
+          </Text>
         </View>
       </View>
     );

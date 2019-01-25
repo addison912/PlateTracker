@@ -92,7 +92,6 @@ export default class Camera extends Component {
 
   render() {
     const nativeProps = convertNativeProps(this.props);
-    console.log("CAMERA RENDERED");
     return (
       <ALPRCamera
         mounted={this.state.mounted}

@@ -11,9 +11,14 @@ const styles = StyleSheet.create({
     left: 0,
     backgroundColor: "#EECB13"
   },
-  text: {
+  plate: {
     textAlign: "center",
     fontSize: 24,
+    padding: 10
+  },
+  confidence: {
+    textAlign: "center",
+    fontSize: 14,
     padding: 10
   },
   preview: {

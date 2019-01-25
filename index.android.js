@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { AppRegistry, View } from "react-native";
 import App from "./App";
 
-import styles from "./styles/index";
-
 export default class AndroidIndex extends React.Component {
   render() {
     return (
