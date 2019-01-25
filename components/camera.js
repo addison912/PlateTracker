@@ -51,7 +51,7 @@ export default class Camera extends Component {
 
   static defaultProps = {
     aspect: CameraManager.Aspect.fill,
-    captureQuality: CameraManager.CaptureQuality.medium,
+    captureQuality: CameraManager.CaptureQuality.high,
     country: "us",
     plateOutlineColor: "#0028ff",
     showPlateOutline: true,

@@ -19,7 +19,7 @@ export default class PlateTracker extends React.Component {
   }
 
   onPlateRecognized = ({ plate, confidence }) => {
-    if (confidence > 90) {
+    if (confidence > 88) {
       this.setState({
         plate
       });

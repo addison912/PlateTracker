@@ -1,7 +1,13 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
+
 import React, { Component } from "react";
 import { AppRegistry, StyleSheet, Text, View, StatusBar } from "react-native";
 
-import Camera from "./components/camera.js";
+import Camera from "react-native-openalpr";
 import styles from "./styles/index";
 
 export default class PlateTracker extends React.Component {
@@ -19,7 +25,7 @@ export default class PlateTracker extends React.Component {
   }
 
   onPlateRecognized = ({ plate, confidence }) => {
-    if (confidence > 90) {
+    if (confidence > 88) {
       this.setState({
         plate
       });
