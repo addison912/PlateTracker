@@ -1,0 +1,41 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:react-native/all",
+    "plugin:react-native-a11y/recommended",
+    "prettier",
+    "prettier/react"
+  ],
+  "rules": {
+    "react/prop-types": 0,
+    "react-native-a11y/label-has-for": 0,
+    "react-native-a11y/rule-name": 0,
+    "no-console": 1,
+    "react-native/no-unused-styles": 1,
+    "react-native/split-platform-components": 1,
+    "react-native/no-inline-styles": 1,
+    "react-native/no-color-literals": 1,
+    "react-native/no-raw-text": 1,
+    "no-unused-vars": 0,
+    "for-direction": 0,
+    "getter-return": 0,
+    "import/default": 0,
+    "react-native/sort-styles": 1
+  },
+  "plugins": ["react", "react-native", "import", "react-native-a11y"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaversion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "react-native/react-native": true,
+    "node": true,
+    "browser": false
+  }
+}
