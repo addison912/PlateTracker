@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { AppRegistry, View } from "react-native";
+import React from "react";
+import { AppRegistry } from "react-native";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import App from "./app/App";
 

@@ -1,28 +1,22 @@
 import React from "react";
-import { AppRegistry, View, Text } from "react-native";
-import { BottomNavigation } from "react-native-paper";
+// import { View, Text } from "react-native";
 import AndroidPlateScanner from "./components/AndroidPlateScanner";
-import BottomNav from "./components/BottomNav";
+
+import Welcome from "./screens/Welcome";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      index: 1
+      index: 0
     };
   }
 
   render() {
     {
-      return this.state.index === 1 ? (
-        <AndroidPlateScanner />
-      ) : (
-        <View>
-          <Text>Nope</Text>
-        </View>
-      );
+      return this.state.index === 1 ? <AndroidPlateScanner /> : <Welcome />;
     }
   }
 }
 
-AppRegistry.registerComponent("App", () => App);
+//

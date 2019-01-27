@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { AppRegistry, StyleSheet, Text, View, StatusBar } from "react-native";
+import { StyleSheet, Text, View, StatusBar } from "react-native";
 
 import Camera from "./camera";
 import styles from "../styles/scanner";
@@ -59,5 +59,3 @@ export default class AndroidPlateScanner extends Component {
     );
   }
 }
-
-AppRegistry.registerComponent("AndroidPlateScanner", () => AndroidPlateScanner);
