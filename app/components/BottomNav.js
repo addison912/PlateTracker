@@ -1,77 +1,40 @@
 import * as React from "react";
-import { ScrollView, View, Image, Dimensions, StyleSheet } from "react-native";
-import { BottomNavigation } from "react-native-paper";
+import { AppRegistry } from "react-native";
+import { BottomNavigation, Text } from "react-native-paper";
 
-type State = {
-  index: number,
-  routes: Array<{
-    key: string,
-    title: string,
-    icon: string,
-    color: string
-  }>
-};
+const MusicRoute = () => <Text>Music</Text>;
 
-export default class ButtomNavigationExample extends React.Component<
-  {},
-  State
-> {
-  static title = "Bottom Navigation";
+const AlbumsRoute = () => <Text>Albums</Text>;
 
+const RecentsRoute = () => <Text>Recents</Text>;
+
+export default class BottomNav extends React.Component {
   state = {
     index: 0,
     routes: [
-      { key: "album", title: "Album", icon: "photo-album", color: "#6200ee" },
-      {
-        key: "library",
-        title: "Library",
-        icon: "inbox",
-        color: "#2962ff"
-      },
-      {
-        key: "favorites",
-        title: "Favorites",
-        icon: "favorite",
-        color: "#00796b"
-      },
-      {
-        key: "purchased",
-        title: "Purchased",
-        icon: "shop",
-        color: "#c51162"
-      }
+      { key: "music", title: "Music", icon: "queue-music" },
+      { key: "albums", title: "Albums", icon: "album" },
+      { key: "recents", title: "Recents", icon: "history" }
     ]
   };
+
+  _handleIndexChange = index => this.setState({ index });
+
+  _renderScene = BottomNavigation.SceneMap({
+    music: MusicRoute,
+    albums: AlbumsRoute,
+    recents: RecentsRoute
+  });
 
   render() {
     return (
       <BottomNavigation
         navigationState={this.state}
-        onIndexChange={index => this.setState({ index })}
-        renderScene={BottomNavigation.SceneMap({
-          album: PhotoGallery,
-          library: PhotoGallery,
-          favorites: PhotoGallery,
-          purchased: PhotoGallery
-        })}
+        onIndexChange={this._handleIndexChange}
+        renderScene={this._renderScene}
       />
     );
   }
 }
 
-const styles = StyleSheet.create({
-  content: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    padding: 4
-  },
-  item: {
-    height: Dimensions.get("window").width / 2,
-    width: "50%",
-    padding: 4
-  },
-  photo: {
-    flex: 1,
-    resizeMode: "cover"
-  }
-});
+AppRegistry.registerComponent("BottomNav", () => BottomNav);

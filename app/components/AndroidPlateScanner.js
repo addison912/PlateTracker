@@ -4,7 +4,7 @@ import { AppRegistry, StyleSheet, Text, View, StatusBar } from "react-native";
 import Camera from "./camera";
 import styles from "../styles/scanner";
 
-export default class PlateTracker extends React.Component {
+export default class AndroidPlateScanner extends Component {
   constructor(props) {
     super(props);
 
@@ -60,4 +60,4 @@ export default class PlateTracker extends React.Component {
   }
 }
 
-AppRegistry.registerComponent("PlateTracker", () => PlateTracker);
+AppRegistry.registerComponent("AndroidPlateScanner", () => AndroidPlateScanner);

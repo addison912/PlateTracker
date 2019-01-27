@@ -1,30 +1,30 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  confidence: {
+    fontSize: 14,
+    padding: 10,
+    textAlign: "center"
+  },
   container: {
     flex: 1
   },
-  textContainer: {
-    position: "absolute",
-    top: 0,
-    right: 0,
-    left: 0,
-    backgroundColor: "#EECB13"
-  },
   plate: {
-    textAlign: "center",
     fontSize: 24,
-    padding: 10
-  },
-  confidence: {
-    textAlign: "center",
-    fontSize: 14,
-    padding: 10
+    padding: 10,
+    textAlign: "center"
   },
   preview: {
+    alignItems: "center",
     flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center"
+    justifyContent: "flex-end"
+  },
+  textContainer: {
+    backgroundColor: "#EECB13",
+    left: 0,
+    position: "absolute",
+    right: 0,
+    top: 0
   }
 });
 

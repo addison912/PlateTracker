@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 import { AppRegistry, View } from "react-native";
-import { Provider as PaperProvider } from "react-native-paper";
+import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
 import App from "./app/App";
 
-export default class AndroidIndex extends React.Component {
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: "tomato",
+    accent: "yellow"
+  }
+};
+
+export default class PlateTracker extends React.Component {
   render() {
     return (
       <PaperProvider>
@@ -13,4 +22,4 @@ export default class AndroidIndex extends React.Component {
   }
 }
 
-AppRegistry.registerComponent("AndroidIndex", () => AndroidIndex);
+AppRegistry.registerComponent("PlateTracker", () => PlateTracker);
