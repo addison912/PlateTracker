@@ -1,7 +1,7 @@
 import React from "react";
 import { AppRegistry } from "react-native";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
-import App from "./app/App";
+import App from "./src/App";
 
 const theme = {
   ...DefaultTheme,

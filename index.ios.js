@@ -8,7 +8,7 @@ import React, { Component } from "react";
 import { AppRegistry, StyleSheet, Text, View, StatusBar } from "react-native";
 
 import Camera from "react-native-openalpr";
-import styles from "./app/styles/scanner";
+import styles from "./src/styles/scanner";
 
 export default class PlateTracker extends React.Component {
   constructor(props) {

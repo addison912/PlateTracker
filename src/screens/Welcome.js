@@ -3,13 +3,24 @@ import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
 class Welcome extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      index: 0
+    };
+  }
+
+  handleSignIn = () => {
+    console.log("sign in pressed");
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.plate}>
+        <View style={styles.plate} onPress={this.props.handleOpenScanner}>
           <Text style={styles.plateText}>PLTE•TKR</Text>
         </View>
-        <Button title="Sign In" />
+        <Button title="Sign In" onPress={this.props.handleOpenScanner} />
       </View>
     );
   }
@@ -27,10 +38,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "black",
     borderRadius: 6,
-    height: 80,
+    height: 157,
     justifyContent: "center",
     margin: 40,
-    width: 200
+    width: 366
   },
   plateText: {
     color: "yellow",
