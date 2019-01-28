@@ -7,8 +7,7 @@ import {
   TouchableOpacity,
   TouchableHighlight
 } from "react-native";
-import { Appbar } from "react-native-paper";
-import { Fonts } from "../utils/fonts";
+import PlateTrackerAppBar from "../components/PlateTrackerAppBar";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -51,19 +50,7 @@ class Profile extends React.Component {
           <Text style={styles.signUp}>No account? No worries!</Text>
           <Text style={styles.signUpLink}>Sign up here!</Text>
         </TouchableOpacity>
-        <Appbar style={styles.appbar}>
-          <Appbar.Action color="#EECB13" icon="account-circle" />
-          <Appbar.Action
-            color="#EECB13"
-            icon="camera"
-            onPress={this.props.changeIndexScanner}
-          />
-          <Appbar.Action
-            color="#EECB13"
-            icon="list"
-            onPress={this.props.changeIndexNewsFeed}
-          />
-        </Appbar>
+        <PlateTrackerAppBar changeIndex={this.props.changeIndex} />
       </View>
     );
   }
@@ -72,14 +59,6 @@ class Profile extends React.Component {
 export default Profile;
 
 const styles = StyleSheet.create({
-  appbar: {
-    bottom: 0,
-    flex: 1,
-    justifyContent: "space-evenly",
-    left: 0,
-    position: "absolute",
-    right: 0
-  },
   container: {
     alignItems: "center",
     flex: 1,

@@ -13,21 +13,9 @@ export default class App extends React.Component {
     };
   }
 
-  changeIndexScanner = e => {
+  changeIndex = index => {
     this.setState({
-      index: "AndroidPlateScanner"
-    });
-  };
-
-  changeIndexProfile = e => {
-    this.setState({
-      index: "Profile"
-    });
-  };
-
-  changeIndexNewsFeed = e => {
-    this.setState({
-      index: "NewsFeed"
+      index
     });
   };
 
@@ -35,34 +23,13 @@ export default class App extends React.Component {
     {
       switch (this.state.index) {
         case "AndroidPlateScanner":
-          return (
-            <AndroidPlateScanner
-              changeIndexProfile={this.changeIndexProfile}
-              changeIndexNewsFeed={this.changeIndexNewsFeed}
-            />
-          );
+          return <AndroidPlateScanner changeIndex={this.changeIndex} />;
         case "Welcome":
-          return (
-            <Welcome
-              changeIndexScanner={this.changeIndexScanner}
-              changeIndexProfile={this.changeIndexProfile}
-              changeIndexNewsFeed={this.changeIndexNewsFeed}
-            />
-          );
+          return <Welcome changeIndex={this.changeIndex} />;
         case "Profile":
-          return (
-            <Profile
-              changeIndexScanner={this.changeIndexScanner}
-              changeIndexNewsFeed={this.changeIndexNewsFeed}
-            />
-          );
+          return <Profile changeIndex={this.changeIndex} />;
         case "NewsFeed":
-          return (
-            <NewsFeed
-              changeIndexProfile={this.changeIndexProfile}
-              changeIndexScanner={this.changeIndexScanner}
-            />
-          );
+          return <NewsFeed changeIndex={this.changeIndex} />;
       }
     }
   }

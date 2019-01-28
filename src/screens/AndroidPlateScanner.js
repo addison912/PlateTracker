@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-color-literals */
 import React, { Component } from "react";
 import { StyleSheet, Text, View, StatusBar } from "react-native";
-import { Appbar } from "react-native-paper";
+import PlateTrackerAppBar from "../components/PlateTrackerAppBar";
 import Camera from "../components/camera";
 
 export default class AndroidPlateScanner extends Component {
@@ -21,7 +21,7 @@ export default class AndroidPlateScanner extends Component {
     if (confidence > 90) {
       this.setState({
         plate,
-        confidence: `Confidence: ${confidence}`
+        confidence: `Confidence: ${confidence}%`
       });
     }
   };
@@ -51,35 +51,17 @@ export default class AndroidPlateScanner extends Component {
           <Text style={styles.plate}>{this.state.plate}</Text>
           <Text style={styles.confidence}>{this.state.confidence}</Text>
         </View>
-        <Appbar style={styles.appbar}>
-          <Appbar.Action
-            color="#EECB13"
-            icon="account-circle"
-            onPress={this.props.changeIndexProfile}
-          />
-          <Appbar.Action color="#EECB13" icon="camera" onPress={() => {}} />
-          <Appbar.Action
-            color="#EECB13"
-            icon="list"
-            onPress={this.props.changeIndexNewsFeed}
-          />
-        </Appbar>
+        <PlateTrackerAppBar changeIndex={this.props.changeIndex} />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  appbar: {
-    bottom: 0,
-    flex: 1,
-    justifyContent: "space-evenly",
-    left: 0,
-    position: "absolute",
-    right: 0
-  },
   confidence: {
+    fontFamily: "RobotoBold",
     fontSize: 14,
+    height: 44,
     padding: 10,
     textAlign: "center"
   },
@@ -87,6 +69,9 @@ const styles = StyleSheet.create({
     flex: 1
   },
   plate: {
+    backgroundColor: "black",
+    color: "#EECB13",
+    fontFamily: "LicensePlate",
     fontSize: 24,
     padding: 10,
     textAlign: "center"
