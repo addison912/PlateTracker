@@ -21,7 +21,7 @@ export default class AndroidPlateScanner extends Component {
     if (confidence > 90) {
       this.setState({
         plate,
-        confidence
+        confidence: `Confidence: ${confidence}`
       });
     }
   };
@@ -49,9 +49,7 @@ export default class AndroidPlateScanner extends Component {
         />
         <View style={styles.textContainer}>
           <Text style={styles.plate}>{this.state.plate}</Text>
-          <Text style={styles.confidence}>
-            Confidence: {this.state.confidence}
-          </Text>
+          <Text style={styles.confidence}>{this.state.confidence}</Text>
         </View>
         <Appbar style={styles.appbar}>
           <Appbar.Action
@@ -59,8 +57,8 @@ export default class AndroidPlateScanner extends Component {
             icon="account-circle"
             onPress={() => {}}
           />
-          <Appbar.Action icon="camera" onPress={() => {}} />
-          <Appbar.Action icon="list" onPress={() => {}} />
+          <Appbar.Action color="#EECB13" icon="camera" onPress={() => {}} />
+          <Appbar.Action color="#EECB13" icon="list" onPress={() => {}} />
         </Appbar>
       </View>
     );

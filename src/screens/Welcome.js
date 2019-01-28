@@ -30,7 +30,10 @@ class Welcome extends React.Component {
           onPress={this.props.handleOpenScanner}
           accessibilityRole="button"
         >
-          <Text style={styles.plateText}>PLTE TRK</Text>
+          <View style={styles.plateTextContainer}>
+            <Text style={styles.welcome}>WELCOME TO</Text>
+            <Text style={styles.plateText}>PLTE TRK</Text>
+          </View>
         </TouchableHighlight>
         <TouchableOpacity
           title="Sign In"
@@ -95,7 +98,13 @@ const styles = StyleSheet.create({
   plateText: {
     color: "#EECB13",
     fontFamily: "LicensePlate",
-    fontSize: 82
+    fontSize: 82,
+    marginTop: 24
+  },
+  plateTextContainer: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "flex-start"
   },
   signIn: {
     backgroundColor: "#EECB13",
@@ -120,5 +129,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     width: 200
+  },
+  welcome: {
+    color: "#EECB13",
+    fontFamily: "RobotoBold",
+    marginTop: 8,
+    textAlign: "center"
   }
 });
