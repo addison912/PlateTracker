@@ -1,30 +1,69 @@
 import React from "react";
 import AndroidPlateScanner from "./screens/AndroidPlateScanner";
 import Welcome from "./screens/Welcome";
+import Profile from "./screens/Profile";
+import NewsFeed from "./screens/NewsFeed";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      index: 0,
+      index: "Welcome",
       loggedIn: false
     };
   }
 
-  handleOpenScanner = () => {
-    console.log("pressed plte•trk");
+  changeIndexScanner = e => {
     this.setState({
-      index: 1
+      index: "AndroidPlateScanner"
+    });
+  };
+
+  changeIndexProfile = e => {
+    this.setState({
+      index: "Profile"
+    });
+  };
+
+  changeIndexNewsFeed = e => {
+    this.setState({
+      index: "NewsFeed"
     });
   };
 
   render() {
     {
-      return this.state.index === 1 ? (
-        <AndroidPlateScanner />
-      ) : (
-        <Welcome handleOpenScanner={this.handleOpenScanner} />
-      );
+      switch (this.state.index) {
+        case "AndroidPlateScanner":
+          return (
+            <AndroidPlateScanner
+              changeIndexProfile={this.changeIndexProfile}
+              changeIndexNewsFeed={this.changeIndexNewsFeed}
+            />
+          );
+        case "Welcome":
+          return (
+            <Welcome
+              changeIndexScanner={this.changeIndexScanner}
+              changeIndexProfile={this.changeIndexProfile}
+              changeIndexNewsFeed={this.changeIndexNewsFeed}
+            />
+          );
+        case "Profile":
+          return (
+            <Profile
+              changeIndexScanner={this.changeIndexScanner}
+              changeIndexNewsFeed={this.changeIndexNewsFeed}
+            />
+          );
+        case "NewsFeed":
+          return (
+            <NewsFeed
+              changeIndexProfile={this.changeIndexProfile}
+              changeIndexScanner={this.changeIndexScanner}
+            />
+          );
+      }
     }
   }
 }

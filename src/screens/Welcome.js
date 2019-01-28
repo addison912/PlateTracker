@@ -55,14 +55,18 @@ class Welcome extends React.Component {
           <Appbar.Action
             color="#EECB13"
             icon="account-circle"
-            onPress={() => {}}
+            onPress={this.props.changeIndexProfile}
           />
           <Appbar.Action
             color="#EECB13"
             icon="camera"
-            onPress={this.props.handleOpenScanner}
+            onPress={this.props.changeIndexScanner}
           />
-          <Appbar.Action color="#EECB13" icon="list" onPress={() => {}} />
+          <Appbar.Action
+            color="#EECB13"
+            icon="list"
+            onPress={this.props.changeIndexNewsFeed}
+          />
         </Appbar>
       </View>
     );

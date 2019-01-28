@@ -1,4 +1,4 @@
-cd /Users/addisonmoore/Google_Drive/_web-projects/General\ Assembly/wdi/projects/PlateTracker/Android
+cd /Users/addisonmoore/Google_Drive/_web-projects/General\ Assembly/wdi/projects/PlateTracker/PlateTracker/Android
 
 ./gradlew clean
 
@@ -11,7 +11,7 @@ cd /Users/addisonmoore/Library/Android/sdk/platform-tools
 ./adb kill-server
 ./adb start-server
 
-cd /Users/addisonmoore/Google_Drive/_web-projects/General\ Assembly/wdi/projects/PlateTracker
+cd /Users/addisonmoore/Google_Drive/_web-projects/General\ Assembly/wdi/projects/PlateTracker/PlateTracker
 
 react-native run-android
 react-native log-android

@@ -55,10 +55,14 @@ export default class AndroidPlateScanner extends Component {
           <Appbar.Action
             color="#EECB13"
             icon="account-circle"
-            onPress={() => {}}
+            onPress={this.props.changeIndexProfile}
           />
           <Appbar.Action color="#EECB13" icon="camera" onPress={() => {}} />
-          <Appbar.Action color="#EECB13" icon="list" onPress={() => {}} />
+          <Appbar.Action
+            color="#EECB13"
+            icon="list"
+            onPress={this.props.changeIndexNewsFeed}
+          />
         </Appbar>
       </View>
     );
