@@ -15,7 +15,8 @@
     "react-native-navigation": "^2.8.0",
     "react-native-openalpr": "^1.1.0",
     "react-native-paper": "^2.6.1",
-    "react-native-vector-icons": "^6.2.0"
+    "react-native-vector-icons": "^6.2.0",
+    "react-navigation": "^3.0.9"
   },
   "devDependencies": {
     "acorn": "^6.0.5",
@@ -42,5 +43,10 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "rnpm": {
+    "assets": [
+      "./src/assets/fonts"
+    ]
   }
 }

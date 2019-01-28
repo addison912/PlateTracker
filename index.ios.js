@@ -4,11 +4,10 @@
  * @flow
  */
 
-import React, { Component } from "react";
-import { AppRegistry, StyleSheet, Text, View, StatusBar } from "react-native";
+import React from "react";
+import { AppRegistry, View } from "react-native";
 
 import Camera from "react-native-openalpr";
-import styles from "./src/styles/scanner";
 
 export default class PlateTracker extends React.Component {
   constructor(props) {
@@ -33,28 +32,7 @@ export default class PlateTracker extends React.Component {
   };
 
   render() {
-    return (
-      <View style={styles.container}>
-        <StatusBar animated hidden />
-        <Camera
-          ref={cam => {
-            this.camera = cam;
-          }}
-          style={styles.preview}
-          aspect={this.state.camera.aspect}
-          captureQuality={Camera.constants.CaptureQuality.high}
-          country="us"
-          onPlateRecognized={this.onPlateRecognized}
-          plateOutlineColor="#ff0000"
-          showPlateOutline
-          torchMode={Camera.constants.TorchMode.off}
-          touchToFocus
-        />
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>{this.state.plate}</Text>
-        </View>
-      </View>
-    );
+    return <View />;
   }
 }
 

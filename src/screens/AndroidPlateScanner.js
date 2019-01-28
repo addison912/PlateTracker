@@ -1,14 +1,13 @@
+/* eslint-disable react-native/no-color-literals */
 import React, { Component } from "react";
 import { StyleSheet, Text, View, StatusBar } from "react-native";
-
+import { Appbar } from "react-native-paper";
 import Camera from "../components/camera";
 
 export default class AndroidPlateScanner extends Component {
   constructor(props) {
     super(props);
-
     this.camera = null;
-
     this.state = {
       camera: {
         aspect: Camera.constants.Aspect.fill
@@ -54,12 +53,29 @@ export default class AndroidPlateScanner extends Component {
             Confidence: {this.state.confidence}
           </Text>
         </View>
+        <Appbar style={styles.appbar}>
+          <Appbar.Action
+            color="#EECB13"
+            icon="account-circle"
+            onPress={() => {}}
+          />
+          <Appbar.Action icon="camera" onPress={() => {}} />
+          <Appbar.Action icon="list" onPress={() => {}} />
+        </Appbar>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  appbar: {
+    bottom: 0,
+    flex: 1,
+    justifyContent: "space-evenly",
+    left: 0,
+    position: "absolute",
+    right: 0
+  },
   confidence: {
     fontSize: 14,
     padding: 10,

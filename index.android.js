@@ -5,17 +5,18 @@ import App from "./src/App";
 
 const theme = {
   ...DefaultTheme,
+  roundness: 2,
   colors: {
     ...DefaultTheme.colors,
-    primary: "tomato",
-    accent: "yellow"
+    primary: "#000000",
+    accent: "#EECB13"
   }
 };
 
 export default class PlateTracker extends React.Component {
   render() {
     return (
-      <PaperProvider>
+      <PaperProvider theme={theme}>
         <App />
       </PaperProvider>
     );

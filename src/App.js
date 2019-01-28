@@ -1,14 +1,13 @@
 import React from "react";
-// import { View, Text } from "react-native";
 import AndroidPlateScanner from "./screens/AndroidPlateScanner";
-
 import Welcome from "./screens/Welcome";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      index: 0
+      index: 0,
+      loggedIn: false
     };
   }
 
@@ -29,5 +28,3 @@ export default class App extends React.Component {
     }
   }
 }
-
-//
