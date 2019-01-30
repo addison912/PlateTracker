@@ -3,6 +3,7 @@ import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 import { Button } from "react-native-paper";
 import PlateTrackerAppBar from "../components/PlateTrackerAppBar";
+import EditProfile from "../modals/EditProfile";
 const defaultAvatar = require("../assets/images/user.png");
 
 class Profile extends React.Component {
@@ -19,9 +20,18 @@ class Profile extends React.Component {
       <View style={styles.container}>
         <Image style={styles.profilPic} source={this.state.avatar} />
         <Text>Profile Info Here</Text>
-        <Button mode="contained" onPress={() => {}} style={styles.button}>
-          Edit
+        <Button
+          mode="contained"
+          icon="account-edit"
+          onPress={() => this.props.changeModal("EditProfile")}
+          style={styles.button}
+        >
+          Edit Profile
         </Button>
+        <EditProfile
+          modal={this.props.modal}
+          changeModal={this.props.changeModal}
+        />
         <PlateTrackerAppBar changeIndex={this.props.changeIndex} />
       </View>
     );

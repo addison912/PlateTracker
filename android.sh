@@ -8,6 +8,7 @@ react-native bundle --platform android --dev false --entry-file index.android.js
 
 cd /Users/addisonmoore/Library/Android/sdk/platform-tools
 
+export PATH=$PATH:/Users/addisonmoore/Library/Android/sdk/platform-tools 
 ./adb kill-server
 ./adb start-server
 

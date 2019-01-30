@@ -1,32 +1,30 @@
 /* eslint-disable react-native/no-color-literals */
 import React, { Component } from "react";
-import {
-  Modal,
-  Text,
-  TouchableHighlight,
-  View,
-  StyleSheet
-} from "react-native";
+import { Modal, Text, View, StyleSheet } from "react-native";
+import { Button } from "react-native-paper";
 
-class SignInModal extends Component {
+class SignUpModal extends Component {
   render() {
     return (
       <Modal
         animationType="slide"
         transparent={false}
-        visible={this.props.modal === "SignInModal"}
+        visible={this.props.modal === "SignUpModal"}
         onRequestClose={() => {}}
       >
         <View style={modalStyles.modal}>
           <View>
-            <Text>Sign In</Text>
+            <Text>Sign Up</Text>
 
-            <TouchableHighlight
+            <Button
               accessibilityRole="button"
+              icon="close"
+              mode="contained"
               onPress={() => this.props.changeModal(false)}
+              style={modalStyles.closeButton}
             >
-              <Text>Cancel</Text>
-            </TouchableHighlight>
+              Close
+            </Button>
           </View>
         </View>
       </Modal>
@@ -34,12 +32,15 @@ class SignInModal extends Component {
   }
 }
 
-export default SignInModal;
+export default SignUpModal;
 
 const modalStyles = StyleSheet.create({
   modal: {
     backgroundColor: "#EFDD6C",
     height: "100%",
     padding: 16
+  },
+  closeButton: {
+    margin: 4
   }
 });

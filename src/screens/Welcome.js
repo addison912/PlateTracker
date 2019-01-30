@@ -9,8 +9,8 @@ import {
   ImageBackground
 } from "react-native";
 import PlateTrackerAppBar from "../components/PlateTrackerAppBar";
-import SignInModal from "../components/SignInModal";
-import SignUpModal from "../components/SignUpModal";
+import SignInModal from "../modals/SignInModal";
+import SignUpModal from "../modals/SignUpModal";
 const backgroundImage = require("../assets/images/motorcycle.jpg");
 
 class Welcome extends React.Component {
