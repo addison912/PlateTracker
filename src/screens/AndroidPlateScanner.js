@@ -12,6 +12,9 @@ export default class AndroidPlateScanner extends Component {
       camera: {
         aspect: Camera.constants.Aspect.fill
       },
+      rotate: false,
+      torch: false,
+      country: "us",
       plate: "Scan a plate",
       confidence: ""
     };
@@ -39,10 +42,10 @@ export default class AndroidPlateScanner extends Component {
           }}
           style={styles.preview}
           aspect={this.state.camera.aspect}
-          captureQuality={Camera.constants.CaptureQuality.high}
-          country="us"
+          captureQuality={"high"}
+          country={this.state.country}
           onPlateRecognized={this.onPlateRecognized}
-          plateOutlineColor="#00ff00"
+          plateOutlineColor="#FFFFFF"
           showPlateOutline
           torchMode={Camera.constants.TorchMode.off}
           touchToFocus

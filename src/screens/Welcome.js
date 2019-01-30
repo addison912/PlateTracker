@@ -5,9 +5,11 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  TouchableHighlight
+  TouchableHighlight,
+  ImageBackground
 } from "react-native";
 import PlateTrackerAppBar from "../components/PlateTrackerAppBar";
+const backgroundImage = require("../assets/images/motorcycle.jpg");
 
 class Welcome extends React.Component {
   constructor(props) {
@@ -23,35 +25,40 @@ class Welcome extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <TouchableHighlight
-          style={styles.plate}
-          onPress={this.props.handleOpenScanner}
-          accessibilityRole="button"
-        >
-          <View style={styles.plateTextContainer}>
-            <Text style={styles.welcome}>WELCOME TO</Text>
-            <Text style={styles.plateText}>PLTE TRK</Text>
-          </View>
-        </TouchableHighlight>
-        <TouchableOpacity
-          title="Sign In"
-          style={styles.button}
-          onPress={this.props.handleOpenScanner}
-          accessibilityRole="button"
-        >
-          <Text style={styles.signIn}>SIGN IN</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          title="Sign Up"
-          onPress={() => {}}
-          accessibilityRole="button"
-        >
-          <Text style={styles.signUp}>No account? No worries!</Text>
-          <Text style={styles.signUpLink}>Sign up here!</Text>
-        </TouchableOpacity>
-        <PlateTrackerAppBar changeIndex={this.props.changeIndex} />
-      </View>
+      <ImageBackground
+        source={backgroundImage}
+        style={{ width: "100%", height: "100%" }}
+      >
+        <View style={styles.container}>
+          <TouchableHighlight
+            style={styles.plate}
+            onPress={this.props.handleOpenScanner}
+            accessibilityRole="button"
+          >
+            <View style={styles.plateTextContainer}>
+              <Text style={styles.welcome}>WELCOME TO</Text>
+              <Text style={styles.plateText}>PLTE TRK</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableOpacity
+            title="Sign In"
+            style={styles.button}
+            onPress={this.props.handleOpenScanner}
+            accessibilityRole="button"
+          >
+            <Text style={styles.signIn}>SIGN IN</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            title="Sign Up"
+            onPress={() => {}}
+            accessibilityRole="button"
+          >
+            <Text style={styles.signUp}>No account? No worries!</Text>
+            <Text style={styles.signUpLink}>Sign up here!</Text>
+          </TouchableOpacity>
+          <PlateTrackerAppBar changeIndex={this.props.changeIndex} />
+        </View>
+      </ImageBackground>
     );
   }
 }
@@ -62,22 +69,22 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "space-between"
   },
   plate: {
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: "#020202",
     borderRadius: 6,
     height: 157,
     justifyContent: "center",
-    margin: 40,
-    marginTop: 24,
+    marginBottom: 140,
+    marginTop: 40,
     width: 332
   },
   plateText: {
     color: "#EECB13",
     fontFamily: "LicensePlate",
-    fontSize: 82,
+    fontSize: 84,
     marginTop: 24
   },
   plateTextContainer: {
@@ -90,21 +97,25 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     color: "black",
     fontFamily: "Roboto",
-    marginTop: 100,
+    fontSize: 18,
+    fontWeight: "bold",
+    marginTop: 160,
     padding: 12,
     textAlign: "center",
-    width: 100
+    width: 140
   },
   signUp: {
-    color: "black",
+    color: "white",
     fontFamily: "Roboto",
-    marginTop: 16,
+    fontSize: 18,
+    marginTop: 12,
     textAlign: "center",
     width: 200
   },
   signUpLink: {
-    color: "black",
+    color: "white",
     fontFamily: "RobotoBold",
+    fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
     width: 200

@@ -54,7 +54,7 @@ export default class Camera extends Component {
     aspect: CameraManager.Aspect.fill,
     captureQuality: CameraManager.CaptureQuality.high,
     country: "us",
-    plateOutlineColor: "#00ff00",
+    plateOutlineColor: "#EECB13",
     showPlateOutline: true,
     rotateMode: CameraManager.RotateMode.off,
     torchMode: CameraManager.TorchMode.off,

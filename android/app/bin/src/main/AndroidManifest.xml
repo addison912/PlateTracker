@@ -18,8 +18,8 @@
   <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <uses-sdk
-        android:minSdkVersion="16"
-        android:targetSdkVersion="22" />
+        android:minSdkVersion="120"
+        android:targetSdkVersion="26" />
 
     <application
       android:name=".MainApplication"
