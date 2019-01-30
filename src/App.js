@@ -9,7 +9,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       index: "Welcome",
-      loggedIn: false
+      modal: false
     };
   }
 
@@ -19,17 +19,45 @@ export default class App extends React.Component {
     });
   };
 
+  changeModal = modal => {
+    this.setState({ modal });
+  };
+
   render() {
     {
       switch (this.state.index) {
         case "AndroidPlateScanner":
-          return <AndroidPlateScanner changeIndex={this.changeIndex} />;
+          return (
+            <AndroidPlateScanner
+              changeIndex={this.changeIndex}
+              modal={this.state.modal}
+              changeModal={this.changeModal}
+            />
+          );
         case "Welcome":
-          return <Welcome changeIndex={this.changeIndex} />;
+          return (
+            <Welcome
+              changeIndex={this.changeIndex}
+              modal={this.state.modal}
+              changeModal={this.changeModal}
+            />
+          );
         case "Profile":
-          return <Profile changeIndex={this.changeIndex} />;
+          return (
+            <Profile
+              changeIndex={this.changeIndex}
+              modal={this.state.modal}
+              changeModal={this.changeModal}
+            />
+          );
         case "NewsFeed":
-          return <NewsFeed changeIndex={this.changeIndex} />;
+          return (
+            <NewsFeed
+              changeIndex={this.changeIndex}
+              modal={this.state.modal}
+              changeModal={this.changeModal}
+            />
+          );
       }
     }
   }

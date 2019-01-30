@@ -9,26 +9,14 @@ import {
   ImageBackground
 } from "react-native";
 import PlateTrackerAppBar from "../components/PlateTrackerAppBar";
+import SignInModal from "../components/SignInModal";
+import SignUpModal from "../components/SignUpModal";
 const backgroundImage = require("../assets/images/motorcycle.jpg");
 
 class Welcome extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      index: 0
-    };
-  }
-
-  handleSignIn = () => {
-    console.log("sign in pressed");
-  };
-
   render() {
     return (
-      <ImageBackground
-        source={backgroundImage}
-        style={{ width: "100%", height: "100%" }}
-      >
+      <ImageBackground source={backgroundImage} style={styles.background}>
         <View style={styles.container}>
           <TouchableHighlight
             style={styles.plate}
@@ -40,22 +28,33 @@ class Welcome extends React.Component {
               <Text style={styles.plateText}>PLTE TRK</Text>
             </View>
           </TouchableHighlight>
-          <TouchableOpacity
-            title="Sign In"
-            style={styles.button}
-            onPress={this.props.handleOpenScanner}
-            accessibilityRole="button"
-          >
-            <Text style={styles.signIn}>SIGN IN</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            title="Sign Up"
-            onPress={() => {}}
-            accessibilityRole="button"
-          >
-            <Text style={styles.signUp}>No account? No worries!</Text>
-            <Text style={styles.signUpLink}>Sign up here!</Text>
-          </TouchableOpacity>
+          <View style={styles.auth}>
+            <TouchableOpacity
+              title="Sign In"
+              style={styles.button}
+              onPress={() => this.props.changeModal("SignInModal")}
+              accessibilityRole="button"
+            >
+              <Text style={styles.signIn}>SIGN IN</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              title="Sign Up"
+              accessibilityRole="button"
+              onPress={() => this.props.changeModal("SignUpModal")}
+              style={styles.signUp}
+            >
+              <Text style={styles.signUpText}>No account? No worries!</Text>
+              <Text style={styles.signUpLink}>Sign up here!</Text>
+            </TouchableOpacity>
+          </View>
+          <SignInModal
+            modal={this.props.modal}
+            changeModal={this.props.changeModal}
+          />
+          <SignUpModal
+            modal={this.props.modal}
+            changeModal={this.props.changeModal}
+          />
           <PlateTrackerAppBar changeIndex={this.props.changeIndex} />
         </View>
       </ImageBackground>
@@ -66,6 +65,13 @@ class Welcome extends React.Component {
 export default Welcome;
 
 const styles = StyleSheet.create({
+  auth: {
+    alignItems: "center",
+    flex: 1,
+    flexDirection: "column",
+    marginTop: 256
+  },
+  background: { height: "100%", width: "100%" },
   container: {
     alignItems: "center",
     flex: 1,
@@ -77,8 +83,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     height: 157,
     justifyContent: "center",
-    marginBottom: 140,
-    marginTop: 40,
+    marginTop: 44,
     width: 332
   },
   plateText: {
@@ -99,18 +104,12 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
     fontSize: 18,
     fontWeight: "bold",
-    marginTop: 160,
     padding: 12,
     textAlign: "center",
     width: 140
   },
   signUp: {
-    color: "white",
-    fontFamily: "Roboto",
-    fontSize: 18,
-    marginTop: 12,
-    textAlign: "center",
-    width: 200
+    marginTop: 12
   },
   signUpLink: {
     color: "white",
@@ -120,6 +119,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: 200
   },
+  signUpText: {
+    color: "white",
+    fontFamily: "Roboto",
+    fontSize: 18,
+    textAlign: "center",
+    width: 200
+  },
+
   welcome: {
     color: "#EECB13",
     fontFamily: "RobotoBold",
