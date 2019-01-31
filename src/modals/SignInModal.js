@@ -1,15 +1,19 @@
+/* eslint-disable react-native/no-raw-text */
 /* eslint-disable react-native/no-color-literals */
 import React, { Component } from "react";
-import {
-  Modal,
-  Text,
-  TouchableHighlight,
-  View,
-  StyleSheet
-} from "react-native";
+import { Modal, Text, View, StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
+import SignInForm from "../forms/SignInForm";
+
+type State = {
+  text: string,
+  name: string,
+  outlinedText: string
+};
 
 class SignInModal extends Component {
+  static title = "Sign In";
+
   render() {
     return (
       <Modal
@@ -20,8 +24,8 @@ class SignInModal extends Component {
       >
         <View style={modalStyles.modal}>
           <View>
-            <Text>Sign In</Text>
-
+            <Text>SIGN IN</Text>
+            <SignInForm />
             <Button
               accessibilityRole="button"
               icon="close"

@@ -5,6 +5,7 @@ import { Button } from "react-native-paper";
 import PlateTrackerAppBar from "../components/PlateTrackerAppBar";
 import EditProfile from "../modals/EditProfile";
 const defaultAvatar = require("../assets/images/user.png");
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 class Profile extends React.Component {
   state = {
@@ -22,11 +23,11 @@ class Profile extends React.Component {
         <Text>Profile Info Here</Text>
         <Button
           mode="contained"
-          icon="account-edit"
           onPress={() => this.props.changeModal("EditProfile")}
           style={styles.button}
         >
-          Edit Profile
+          <Icon name="account-edit" style={styles.icon} size={18} />
+          <Text> Edit Profile</Text>
         </Button>
         <EditProfile
           modal={this.props.modal}
@@ -48,6 +49,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
     justifyContent: "flex-start"
+  },
+  icon: {
+    color: "#EECB13"
   },
   profilPic: {
     height: 200,
