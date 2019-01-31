@@ -25,16 +25,7 @@ class SignInModal extends Component {
         <View style={modalStyles.modal}>
           <View>
             <Text>SIGN IN</Text>
-            <SignInForm />
-            <Button
-              accessibilityRole="button"
-              icon="close"
-              mode="contained"
-              onPress={() => this.props.changeModal(false)}
-              style={modalStyles.closeButton}
-            >
-              Close
-            </Button>
+            <SignInForm changeModal={this.props.changeModal} />
           </View>
         </View>
       </Modal>

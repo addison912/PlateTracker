@@ -58,6 +58,8 @@ class SignInForm extends Component {
             value={this.state.username}
             error={!this._isUsernameValid()}
             onChangeText={username => this.setState({ username })}
+            text="white"
+            underlineColorAndroid={"rgba(255,255,255,1)"}
           />
           <HelperText type="error" visible={!this._isUsernameValid()}>
             Error: Only letters and numbers are allowed
@@ -76,14 +78,31 @@ class SignInForm extends Component {
             style={styles.icon}
             name={this.state.icEye}
             size={24}
-            color={"#000"}
             onPress={this.hideShowPassword}
           />
-          <HelperText type="error" visible={!this._isUsernameValid()}>
-            Error: Only letters and numbers are allowed
+          <HelperText type="error" visible={!this.state.validPassword}>
+            Error: Password must be at least 8 characters long and contain at
+            least one number, one uppercase letter and one lowercase letter
           </HelperText>
         </View>
-        <Button />
+        <Button
+          accessibilityRole="button"
+          mode="contained"
+          color="#F6F6F6"
+          onPress={() => this.props.changeModal(false)}
+          style={styles.button}
+        >
+          Close
+        </Button>
+        <Button
+          accessibilityRole="button"
+          mode="contained"
+          color="#EFCD00"
+          onPress={() => this.props.changeModal(false)}
+          style={styles.button}
+        >
+          Submit
+        </Button>
       </KeyboardAvoidingView>
     );
   }
@@ -92,7 +111,11 @@ class SignInForm extends Component {
 export default SignInForm;
 
 const styles = StyleSheet.create({
+  button: {
+    marginBottom: 12
+  },
   icon: {
+    color: "#000",
     position: "absolute",
     right: 12,
     top: 24
