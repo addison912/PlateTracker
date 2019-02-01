@@ -3,6 +3,8 @@ import AndroidPlateScanner from "./screens/AndroidPlateScanner";
 import Welcome from "./screens/Welcome";
 import Profile from "./screens/Profile";
 import NewsFeed from "./screens/NewsFeed";
+import deviceStorage from "./services/deviceStorage";
+import axios from "axios";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -10,15 +12,52 @@ export default class App extends React.Component {
     this.state = {
       index: "Welcome",
       modal: false,
-      jwt: ""
+      jwt: null,
+      user: null,
+      loading: false,
+      verified: false
     };
   }
 
-  newJWT(jwt) {
-    this.setState({
-      jwt: jwt
-    });
+  verifyLogin = () => {
+    deviceStorage.loadJWT;
+    if (!this.state.jwt) {
+      console.log("user is not logged in");
+      return false;
+    } else {
+      console.log(this.state.jwt);
+      axios({
+        method: "POST",
+        url: "/verify",
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader("Authorization", this.state.jwt);
+        }
+      })
+        .done(function(response) {
+          console.log(response);
+        })
+        .fail(function(err) {
+          console.log(err);
+        });
+
+      return true;
+    }
+  };
+
+  componentDidMount() {
+    this.setState({ verfied: this.verifyLogin });
+    if (this.state.verified === true) {
+      this.setState({ index: "Profile" });
+    }
   }
+
+  newJWT = (jwt, user) => {
+    this.setState({
+      jwt,
+      user
+    });
+  };
+
   changeIndex = index => {
     this.setState({
       index
@@ -48,6 +87,7 @@ export default class App extends React.Component {
               modal={this.state.modal}
               changeModal={this.changeModal}
               jwt={this.state.jwt}
+              newJWT={this.newJWT}
             />
           );
         case "Profile":

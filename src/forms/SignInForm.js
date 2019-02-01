@@ -6,7 +6,7 @@ import { Button, TextInput, HelperText } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import axios from "axios";
 import deviceStorage from "../services/deviceStorage";
-import serverUrl from "../config/constants";
+import { serverUrl } from "../config/constants";
 
 class SignInForm extends Component {
   state = {
@@ -48,10 +48,12 @@ class SignInForm extends Component {
   };
 
   handleSubmit = () => {
+    console.log("handle submit activate");
     let user = {
       username: this.state.username,
       password: this.state.password
     };
+    console.log(user);
     axios({
       method: "POST",
       url: `${serverUrl}/user/login`,
@@ -59,8 +61,14 @@ class SignInForm extends Component {
       config: {
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json"
+          "Content-Type": "application/x-www-form-urlencoded"
         }
+      },
+      error: function(e1, e2, e3) {
+        console.log(e1);
+      },
+      success: function(res) {
+        console.log(res);
       }
     })
       .then(res => {
@@ -73,8 +81,8 @@ class SignInForm extends Component {
         this.props.changeModal(false);
       })
       .catch(error => {
-        if (error.response.status === 401)
-          alert("Invalid username or password");
+        // if (error.response.status === 401)
+        //   alert("Invalid username or password");
         console.log(error);
       });
   };
