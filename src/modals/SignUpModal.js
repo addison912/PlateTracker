@@ -36,7 +36,7 @@ export default SignUpModal;
 
 const modalStyles = StyleSheet.create({
   modal: {
-    backgroundColor: "#EFDD6C",
+    backgroundColor: "#FFF9D0",
     height: "100%",
     padding: 16
   },

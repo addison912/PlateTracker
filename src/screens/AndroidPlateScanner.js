@@ -29,7 +29,7 @@ export default class AndroidPlateScanner extends Component {
         confidence: `Confidence: ${confidence}%`
       });
     }
-    axios.get(`${serverUrl}/stolen-vehicles/${plate}`).then(plate => {
+    axios.get(`${serverUrl}/stolen-vehicles/${plate}`, {}).then(plate => {
       if (plate) {
         alert("This vehicle has been reported as stolen!");
       }
