@@ -48,14 +48,21 @@ class Welcome extends React.Component {
             </TouchableOpacity>
           </View>
           <SignInModal
+            newJWT={this.props.newJWT}
             modal={this.props.modal}
             changeModal={this.props.changeModal}
+            changeIndex={this.props.changeIndex}
           />
           <SignUpModal
+            newJWT={this.props.newJWT}
             modal={this.props.modal}
             changeModal={this.props.changeModal}
+            changeIndex={this.props.changeIndex}
           />
-          <PlateTrackerAppBar changeIndex={this.props.changeIndex} />
+          <PlateTrackerAppBar
+            changeIndex={this.props.changeIndex}
+            jwt={this.props.jwt}
+          />
         </View>
       </ImageBackground>
     );

@@ -9,10 +9,16 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       index: "Welcome",
-      modal: false
+      modal: false,
+      jwt: ""
     };
   }
 
+  newJWT(jwt) {
+    this.setState({
+      jwt: jwt
+    });
+  }
   changeIndex = index => {
     this.setState({
       index
@@ -32,6 +38,7 @@ export default class App extends React.Component {
               changeIndex={this.changeIndex}
               modal={this.state.modal}
               changeModal={this.changeModal}
+              jwt={this.state.jwt}
             />
           );
         case "Welcome":
@@ -40,6 +47,7 @@ export default class App extends React.Component {
               changeIndex={this.changeIndex}
               modal={this.state.modal}
               changeModal={this.changeModal}
+              jwt={this.state.jwt}
             />
           );
         case "Profile":
@@ -48,6 +56,7 @@ export default class App extends React.Component {
               changeIndex={this.changeIndex}
               modal={this.state.modal}
               changeModal={this.changeModal}
+              jwt={this.state.jwt}
             />
           );
         case "NewsFeed":
@@ -56,6 +65,7 @@ export default class App extends React.Component {
               changeIndex={this.changeIndex}
               modal={this.state.modal}
               changeModal={this.changeModal}
+              jwt={this.state.jwt}
             />
           );
       }

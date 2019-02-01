@@ -1,8 +1,7 @@
 /* eslint-disable react-native/no-raw-text */
 /* eslint-disable react-native/no-color-literals */
 import React, { Component } from "react";
-import { Modal, Text, View, StyleSheet } from "react-native";
-import { Button } from "react-native-paper";
+import { Modal, View, StyleSheet } from "react-native";
 import SignInForm from "../forms/SignInForm";
 
 type State = {
@@ -24,8 +23,11 @@ class SignInModal extends Component {
       >
         <View style={modalStyles.modal}>
           <View>
-            <Text>SIGN IN</Text>
-            <SignInForm changeModal={this.props.changeModal} />
+            <SignInForm
+              newJWT={this.props.newJWT}
+              changeModal={this.props.changeModal}
+              changeIndex={this.props.changeIndex}
+            />
           </View>
         </View>
       </Modal>

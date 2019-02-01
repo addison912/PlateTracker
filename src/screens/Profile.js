@@ -20,7 +20,6 @@ class Profile extends React.Component {
     return (
       <View style={styles.container}>
         <Image style={styles.profilPic} source={this.state.avatar} />
-        <Text>Profile Info Here</Text>
         <Button
           mode="contained"
           onPress={() => this.props.changeModal("EditProfile")}
@@ -33,7 +32,10 @@ class Profile extends React.Component {
           modal={this.props.modal}
           changeModal={this.props.changeModal}
         />
-        <PlateTrackerAppBar changeIndex={this.props.changeIndex} />
+        <PlateTrackerAppBar
+          changeIndex={this.props.changeIndex}
+          jwt={this.props.jwt}
+        />
       </View>
     );
   }
