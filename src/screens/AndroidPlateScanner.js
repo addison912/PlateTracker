@@ -29,9 +29,15 @@ export default class AndroidPlateScanner extends Component {
         confidence: `Confidence: ${confidence}%`
       });
     }
-    axios.get(`${serverUrl}/stolen-vehicles/${plate}`, {}).then(plate => {
-      if (plate) {
-        alert("This vehicle has been reported as stolen!");
+    axios.get(`${serverUrl}/stolen-vehicles/${plate}`, {}).then(stolenPlate => {
+      if (stolenPlate.data.licensePlate) {
+        alert(
+          `${stolenPlate.data.color} ${stolenPlate.data.make} ${
+            stolenPlate.data.model
+          } with license plate "${
+            stolenPlate.data.licensePlate
+          }" has been reported as stolen!`
+        );
       }
     });
   };
