@@ -26,7 +26,10 @@ class NewsFeed extends React.Component {
           Add a post
         </Button>
         <PostContainer />
-        <PlateTrackerAppBar changeIndex={this.props.changeIndex} />
+        <PlateTrackerAppBar
+          changeIndex={this.props.changeIndex}
+          jwt={this.props.jwt}
+        />
       </View>
     );
   }

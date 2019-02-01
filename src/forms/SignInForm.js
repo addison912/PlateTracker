@@ -4,30 +4,33 @@ import React, { Component } from "react";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { Button, TextInput, HelperText } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import axios from "axios";
+import deviceStorage from "../services/deviceStorage";
 
 class SignInForm extends Component {
   state = {
     text: "",
-    username: "",
     outlinedText: "",
-    password: null,
     icEye: "visibility-off",
     passwordHidden: true,
-    validPassword: true
+    username: "",
+    password: null,
+    validPassword: true,
+    validUsername: true
   };
 
   componentWillUnmount() {
     this.setState({ text: "", name: "", outlinedText: "" });
   }
 
-  handleChangePassword = password => {
+  isPasswordValid = password => {
     this.setState({ password });
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{7,})/.test(this.state.password)
       ? this.setState({ validPassword: true })
       : this.setState({ validPassword: false });
   };
 
-  _isUsernameValid = () => /^[a-zA-Z0-9]*$/.test(this.state.username);
+  isUsernameValid = () => /^[a-zA-Z0-9]*$/.test(this.state.username);
 
   hideShowPassword = () => {
     if (this.state.passwordHidden) {
@@ -43,6 +46,37 @@ class SignInForm extends Component {
     }
   };
 
+  handleSubmit = () => {
+    let user = {
+      username: this.state.username,
+      password: this.state.password
+    };
+    axios({
+      method: "POST",
+      url: "http://localhost:3001/user/login",
+      data: user,
+      config: {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      }
+    })
+      .then(res => {
+        let user = res.data.user;
+        deviceStorage.saveItem("id_token", res.data.jwt);
+        deviceStorage.saveItem("currentUser", JSON.stringify(user));
+        this.props.newJWT(res.jwt, user);
+        this.props.changeIndex("NewsFeed");
+        this.props.changeModal(false);
+      })
+      .catch(error => {
+        if (error.response.status === 401)
+          alert("Username or password were not valid. Try again?");
+        console.log(error);
+      });
+  };
+
   render() {
     return (
       <KeyboardAvoidingView
@@ -54,14 +88,12 @@ class SignInForm extends Component {
           <TextInput
             mode="outlined"
             label="USERNAME"
-            onChange={this._isPasswordValid}
+            onChange={this.isUsernameValid}
             value={this.state.username}
-            error={!this._isUsernameValid()}
+            error={!this.isUsernameValid()}
             onChangeText={username => this.setState({ username })}
-            text="white"
-            underlineColorAndroid={"rgba(255,255,255,1)"}
           />
-          <HelperText type="error" visible={!this._isUsernameValid()}>
+          <HelperText type="error" visible={!this.isUsernameValid()}>
             Error: Only letters and numbers are allowed
           </HelperText>
         </View>
@@ -72,7 +104,7 @@ class SignInForm extends Component {
             label="PASSWORD"
             value={this.state.password}
             error={!this.state.validPassword}
-            onChangeText={password => this.handleChangePassword(password)}
+            onChangeText={password => this.isPasswordValid(password)}
           />
           <Icon
             style={styles.icon}
@@ -88,7 +120,7 @@ class SignInForm extends Component {
         <Button
           accessibilityRole="button"
           mode="contained"
-          color="#F6F6F6"
+          color="#EFCD00"
           onPress={() => this.props.changeModal(false)}
           style={styles.button}
         >
@@ -97,8 +129,8 @@ class SignInForm extends Component {
         <Button
           accessibilityRole="button"
           mode="contained"
-          color="#EFCD00"
-          onPress={() => this.props.changeModal(false)}
+          color="#000000"
+          onPress={this.handleSubmit}
           style={styles.button}
         >
           Submit

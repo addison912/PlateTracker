@@ -3,13 +3,19 @@ import { StyleSheet } from "react-native";
 import { Appbar } from "react-native-paper";
 
 class PlateTrackerAppBar extends React.Component {
+  handleProfilePress = () => {
+    if (this.props.jwt) {
+      this.props.changeIndex("Profile");
+    }
+  };
+
   render() {
     return (
       <Appbar style={styles.appbar}>
         <Appbar.Action
           color="#EECB13"
           icon="account-circle"
-          onPress={() => this.props.changeIndex("Profile")}
+          onPress={this.handleProfilePress}
         />
         <Appbar.Action
           color="#EECB13"
