@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, StatusBar } from "react-native";
 import PlateTrackerAppBar from "../components/PlateTrackerAppBar";
 import Camera from "../components/camera";
+import axios from "axios";
+import { serverUrl } from "../config/constants";
 
 export default class AndroidPlateScanner extends Component {
   constructor(props) {
@@ -27,6 +29,11 @@ export default class AndroidPlateScanner extends Component {
         confidence: `Confidence: ${confidence}%`
       });
     }
+    axios.get(`${serverUrl}/stolen-vehicles/${plate}`).then(plate => {
+      if (plate) {
+        alert("This vehicle has been reported as stolen!");
+      }
+    });
   };
 
   render() {

@@ -6,6 +6,7 @@ import { Button, TextInput, HelperText } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import axios from "axios";
 import deviceStorage from "../services/deviceStorage";
+import serverUrl from "../config/constants";
 
 class SignInForm extends Component {
   state = {
@@ -53,7 +54,7 @@ class SignInForm extends Component {
     };
     axios({
       method: "POST",
-      url: "http://localhost:3001/user/login",
+      url: `${serverUrl}/user/login`,
       data: user,
       config: {
         headers: {
@@ -63,6 +64,7 @@ class SignInForm extends Component {
       }
     })
       .then(res => {
+        console.log(res);
         let user = res.data.user;
         deviceStorage.saveItem("id_token", res.data.jwt);
         deviceStorage.saveItem("currentUser", JSON.stringify(user));
@@ -72,7 +74,7 @@ class SignInForm extends Component {
       })
       .catch(error => {
         if (error.response.status === 401)
-          alert("Username or password were not valid. Try again?");
+          alert("Invalid username or password");
         console.log(error);
       });
   };
