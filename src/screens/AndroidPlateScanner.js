@@ -69,7 +69,7 @@ export default class AndroidPlateScanner extends Component {
         </View>
         <PlateTrackerAppBar
           changeIndex={this.props.changeIndex}
-          jwt={this.props.jwt}
+          verified={this.props.verified}
         />
       </View>
     );

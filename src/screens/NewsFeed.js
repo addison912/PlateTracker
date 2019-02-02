@@ -28,7 +28,7 @@ class NewsFeed extends React.Component {
         <PostContainer />
         <PlateTrackerAppBar
           changeIndex={this.props.changeIndex}
-          jwt={this.props.jwt}
+          verified={this.props.verified}
         />
       </View>
     );

@@ -23,7 +23,7 @@ export default class App extends React.Component {
     deviceStorage.loadJWT;
     if (!this.state.jwt) {
       console.log("user is not logged in");
-      return false;
+      this.setState({ verified: false });
     } else {
       console.log(this.state.jwt);
       axios({
@@ -35,17 +35,16 @@ export default class App extends React.Component {
       })
         .done(function(response) {
           console.log(response);
+          this.setState({ verified: true });
         })
         .fail(function(err) {
           console.log(err);
         });
-
-      return true;
     }
   };
 
   componentDidMount() {
-    this.setState({ verfied: this.verifyLogin });
+    this.verifyLogin();
     if (this.state.verified === true) {
       this.setState({ index: "Profile" });
     }
@@ -77,7 +76,8 @@ export default class App extends React.Component {
               changeIndex={this.changeIndex}
               modal={this.state.modal}
               changeModal={this.changeModal}
-              jwt={this.state.jwt}
+              verified={this.state.verified}
+              newJWT={this.newJWT}
             />
           );
         case "Welcome":
@@ -86,8 +86,9 @@ export default class App extends React.Component {
               changeIndex={this.changeIndex}
               modal={this.state.modal}
               changeModal={this.changeModal}
-              jwt={this.state.jwt}
+              verified={this.state.verified}
               newJWT={this.newJWT}
+              verifyLogin={this.verifyLogin}
             />
           );
         case "Profile":
@@ -96,7 +97,8 @@ export default class App extends React.Component {
               changeIndex={this.changeIndex}
               modal={this.state.modal}
               changeModal={this.changeModal}
-              jwt={this.state.jwt}
+              verified={this.state.verified}
+              newJWT={this.newJWT}
             />
           );
         case "NewsFeed":
@@ -105,7 +107,8 @@ export default class App extends React.Component {
               changeIndex={this.changeIndex}
               modal={this.state.modal}
               changeModal={this.changeModal}
-              jwt={this.state.jwt}
+              verified={this.state.verified}
+              newJWT={this.newJWT}
             />
           );
       }

@@ -48,7 +48,7 @@ class SignInForm extends Component {
   };
 
   handleSubmit = () => {
-    console.log("handle submit activate");
+    console.log("handle submit activated");
     let user = {
       username: this.state.username,
       password: this.state.password
@@ -63,12 +63,6 @@ class SignInForm extends Component {
           Accept: "application/json",
           "Content-Type": "application/x-www-form-urlencoded"
         }
-      },
-      error: function(e1, e2, e3) {
-        console.log(e1);
-      },
-      success: function(res) {
-        console.log(res);
       }
     })
       .then(res => {
@@ -81,8 +75,6 @@ class SignInForm extends Component {
         this.props.changeModal(false);
       })
       .catch(error => {
-        // if (error.response.status === 401)
-        //   alert("Invalid username or password");
         console.log(error);
       });
   };

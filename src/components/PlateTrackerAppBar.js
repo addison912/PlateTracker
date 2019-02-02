@@ -4,7 +4,8 @@ import { Appbar } from "react-native-paper";
 
 class PlateTrackerAppBar extends React.Component {
   handleProfilePress = () => {
-    if (this.props.jwt) {
+    console.log("pressed profile", this.props.jwt);
+    if (this.props.verified) {
       this.props.changeIndex("Profile");
     }
   };

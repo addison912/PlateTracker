@@ -61,7 +61,7 @@ class Welcome extends React.Component {
           />
           <PlateTrackerAppBar
             changeIndex={this.props.changeIndex}
-            jwt={this.props.jwt}
+            verified={this.props.verified}
           />
         </View>
       </ImageBackground>
