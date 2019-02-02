@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
     flexDirection: "column",
-    marginTop: 256
+    marginTop: 282
   },
   background: { height: "100%", width: "100%" },
   container: {

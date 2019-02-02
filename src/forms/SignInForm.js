@@ -66,11 +66,11 @@ class SignInForm extends Component {
       }
     })
       .then(res => {
-        console.log(res);
+        console.log(res.data);
         let user = res.data.user;
         deviceStorage.saveItem("id_token", res.data.jwt);
         deviceStorage.saveItem("currentUser", JSON.stringify(user));
-        this.props.newJWT(res.jwt, user);
+        this.props.newJWT(res.data.jwt, user);
         this.props.changeIndex("NewsFeed");
         this.props.changeModal(false);
       })

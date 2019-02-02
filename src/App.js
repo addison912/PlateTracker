@@ -53,7 +53,8 @@ export default class App extends React.Component {
   newJWT = (jwt, user) => {
     this.setState({
       jwt,
-      user
+      user,
+      verified: true
     });
   };
 

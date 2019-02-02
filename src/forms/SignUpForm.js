@@ -57,57 +57,55 @@ class SignUpForm extends Component {
 
   isEmailValid = email => {
     this.setState({ email });
-    /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/.test(
-      this.state.email
-    )
+    /(.+)@(.+){2,}\.(.+){2,}/.test(this.state.email)
       ? this.setState({ validEmail: true })
       : this.setState({ validEmail: false });
   };
 
   handleSignUp = () => {
     console.log("attempting to sign up user");
-    // if (
-    //   this.state.validUsername &&
-    //   this.state.validEmail &&
-    //   this.state.validPassword &&
-    //   this.state.validConfirmPassword &&
-    //   this.state.password.length >= 8 &&
-    //   this.state.username.length >= 6 &&
-    //   this.state.email.length >= 6
-    // ) {
-    //   let user = {
-    //     firstName: this.state.firstName,
-    //     lastName: this.state.lastName,
-    //     username: this.state.username,
-    //     password: this.state.password,
-    //     email: this.state.email
-    //   };
-    //   axios({
-    //     method: "POST",
-    //     url: `${serverUrl}/user/signup`,
-    //     data: user,
-    //     config: {
-    //       headers: {
-    //         Accept: "application/json",
-    //         "Content-Type": "application/json"
-    //       }
-    //     }
-    //   })
-    //     .then(res => {
-    //       console.log(res);
-    //       let user = res.data.user;
-    //       deviceStorage.saveItem("id_token", res.data.jwt);
-    //       deviceStorage.saveItem("currentUser", JSON.stringify(user));
-    //       this.props.newJWT(res.jwt, user);
-    //       this.props.changeIndex("NewsFeed");
-    //       this.props.changeModal(false);
-    //     })
-    //     .catch(error => {
-    //       if (error.response.status === 401)
-    //         alert("Invalid username or password");
-    //       console.log(error);
-    //     });
-    // }
+    if (
+      this.state.validUsername &&
+      this.state.validEmail &&
+      this.state.validPassword &&
+      this.state.validConfirmPassword &&
+      this.state.password.length >= 8 &&
+      this.state.username.length >= 6 &&
+      this.state.email.length >= 6
+    ) {
+      let user = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        username: this.state.username,
+        password: this.state.password,
+        email: this.state.email
+      };
+      axios({
+        method: "POST",
+        url: `${serverUrl}/user/signup`,
+        data: user,
+        config: {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          }
+        }
+      })
+        .then(res => {
+          console.log(res);
+          let user = res.data.user;
+          deviceStorage.saveItem("id_token", res.data.jwt);
+          deviceStorage.saveItem("currentUser", JSON.stringify(user));
+          this.props.newJWT(res.jwt, user);
+          this.props.changeIndex("NewsFeed");
+          this.props.changeModal(false);
+        })
+        .catch(error => {
+          if (error.response.status === 401)
+            alert("Invalid username or password");
+          console.log(error);
+        });
+    }
   };
 
   render() {
@@ -138,10 +136,9 @@ class SignUpForm extends Component {
             <TextInput
               mode="outlined"
               label="EMAIL"
-              onChange={this.isEmailValid}
               value={this.state.email}
               error={!this.state.validEmail}
-              onChangeText={email => this.isEmailValid({ email })}
+              onChangeText={email => this.isEmailValid(email)}
             />
             <Icon style={styles.icon} name={"star-of-life"} size={10} />
             <HelperText type="error" visible={!this.state.validEmail}>
