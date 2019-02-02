@@ -4,12 +4,6 @@ import React, { Component } from "react";
 import { Modal, View, StyleSheet } from "react-native";
 import SignInForm from "../forms/SignInForm";
 
-type State = {
-  text: string,
-  name: string,
-  outlinedText: string
-};
-
 class SignInModal extends Component {
   static title = "Sign In";
 
@@ -39,7 +33,7 @@ export default SignInModal;
 
 const modalStyles = StyleSheet.create({
   modal: {
-    backgroundColor: "#FFF9D0",
+    backgroundColor: "#FAFAFA",
     height: "100%",
     padding: 16
   }

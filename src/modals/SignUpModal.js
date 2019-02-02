@@ -1,9 +1,12 @@
+/* eslint-disable react-native/no-raw-text */
 /* eslint-disable react-native/no-color-literals */
 import React, { Component } from "react";
-import { Modal, Text, View, StyleSheet } from "react-native";
-import { Button } from "react-native-paper";
+import { Modal, View, StyleSheet } from "react-native";
+import SignUpForm from "../forms/SignUpForm";
 
 class SignUpModal extends Component {
+  static title = "Sign Up";
+
   render() {
     return (
       <Modal
@@ -14,17 +17,11 @@ class SignUpModal extends Component {
       >
         <View style={modalStyles.modal}>
           <View>
-            <Text>Sign Up</Text>
-
-            <Button
-              accessibilityRole="button"
-              icon="close"
-              mode="contained"
-              onPress={() => this.props.changeModal(false)}
-              style={modalStyles.closeButton}
-            >
-              Close
-            </Button>
+            <SignUpForm
+              newJWT={this.props.newJWT}
+              changeModal={this.props.changeModal}
+              changeIndex={this.props.changeIndex}
+            />
           </View>
         </View>
       </Modal>
@@ -36,11 +33,8 @@ export default SignUpModal;
 
 const modalStyles = StyleSheet.create({
   modal: {
-    backgroundColor: "#FFF9D0",
+    backgroundColor: "#FAFAFA",
     height: "100%",
     padding: 16
-  },
-  closeButton: {
-    margin: 4
   }
 });

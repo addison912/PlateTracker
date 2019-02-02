@@ -42,7 +42,7 @@ export default EditProfile;
 
 const modalStyles = StyleSheet.create({
   modal: {
-    backgroundColor: "#FFF9D0",
+    backgroundColor: "#FAFAFA",
     height: "100%",
     padding: 16
   }
