@@ -1,36 +1,26 @@
+/* eslint-disable react-native/no-raw-text */
 /* eslint-disable react-native/no-color-literals */
 import React, { Component } from "react";
-import {
-  Modal,
-  Text,
-  TouchableHighlight,
-  View,
-  StyleSheet
-} from "react-native";
-import { Button } from "react-native-paper";
+import { Modal, View, StyleSheet } from "react-native";
+import AddPostForm from "../forms/AddPostForm";
 
-class EditProfile extends Component {
+class AddPost extends Component {
+  static title = "Add Post";
+
   render() {
     return (
       <Modal
         animationType="slide"
         transparent={false}
-        visible={this.props.modal === "EditProfile"}
+        visible={this.props.modal === "AddPost"}
         onRequestClose={() => {}}
       >
         <View style={modalStyles.modal}>
           <View>
-            <Text>Edit Profile</Text>
-
-            <Button
-              accessibilityRole="button"
-              icon="close"
-              mode="contained"
-              onPress={() => this.props.changeModal(false)}
-              style={modalStyles.closeButton}
-            >
-              Close
-            </Button>
+            <AddPostForm
+              changeModal={this.props.changeModal}
+              changeIndex={this.props.changeIndex}
+            />
           </View>
         </View>
       </Modal>
@@ -38,7 +28,7 @@ class EditProfile extends Component {
   }
 }
 
-export default EditProfile;
+export default AddPost;
 
 const modalStyles = StyleSheet.create({
   modal: {

@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { Modal, View, StyleSheet } from "react-native";
 import AddPostForm from "../forms/AddPostForm";
 
-class AddPost extends Component {
+class AddPostModal extends Component {
   static title = "Add Post";
 
   render() {
@@ -12,14 +12,15 @@ class AddPost extends Component {
       <Modal
         animationType="slide"
         transparent={false}
-        visible={this.props.modal === "AddPost"}
+        visible={this.props.modal === "AddPostModal"}
         onRequestClose={() => {}}
       >
         <View style={modalStyles.modal}>
           <View>
             <AddPostForm
-              changeModal={this.props.changeModal}
               changeIndex={this.props.changeIndex}
+              changeModal={this.props.changeModal}
+              verified={this.props.verified}
             />
           </View>
         </View>
@@ -28,7 +29,7 @@ class AddPost extends Component {
   }
 }
 
-export default AddPost;
+export default AddPostModal;
 
 const modalStyles = StyleSheet.create({
   modal: {

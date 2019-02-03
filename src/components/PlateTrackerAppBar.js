@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Appbar } from "react-native-paper";
+import SignInModal from "../modals/SignInModal";
+import SignUpModal from "../modals/SignUpModal";
 
 class PlateTrackerAppBar extends React.Component {
   handleProfilePress = () => {
@@ -8,8 +10,7 @@ class PlateTrackerAppBar extends React.Component {
     if (this.props.verified) {
       this.props.changeIndex("Profile");
     } else {
-      this.props.changeIndex("Welcome");
-      alert("Please sign in to view your profile!");
+      this.props.changeModal("SignInModal");
     }
   };
 
@@ -30,6 +31,20 @@ class PlateTrackerAppBar extends React.Component {
           color="#EECB13"
           icon="list"
           onPress={() => this.props.changeIndex("NewsFeed")}
+        />
+        <SignInModal
+          changeIndex={this.props.changeIndex}
+          verified={this.props.verified}
+          newJWT={this.props.newJWT}
+          modal={this.props.modal}
+          changeModal={this.props.changeModal}
+        />
+        <SignUpModal
+          changeIndex={this.props.changeIndex}
+          verified={this.props.verified}
+          newJWT={this.props.newJWT}
+          modal={this.props.modal}
+          changeModal={this.props.changeModal}
         />
       </Appbar>
     );

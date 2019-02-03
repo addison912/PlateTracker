@@ -47,21 +47,12 @@ class Welcome extends React.Component {
               <Text style={styles.signUpLink}>Sign up here!</Text>
             </TouchableOpacity>
           </View>
-          <SignInModal
-            newJWT={this.props.newJWT}
-            modal={this.props.modal}
-            changeModal={this.props.changeModal}
-            changeIndex={this.props.changeIndex}
-          />
-          <SignUpModal
-            newJWT={this.props.newJWT}
-            modal={this.props.modal}
-            changeModal={this.props.changeModal}
-            changeIndex={this.props.changeIndex}
-          />
           <PlateTrackerAppBar
             changeIndex={this.props.changeIndex}
             verified={this.props.verified}
+            newJWT={this.props.newJWT}
+            modal={this.props.modal}
+            changeModal={this.props.changeModal}
           />
         </View>
       </ImageBackground>

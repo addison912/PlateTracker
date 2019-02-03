@@ -1,8 +1,13 @@
 /* eslint-disable react-native/no-raw-text */
 /* eslint-disable react-native/no-color-literals */
 import React, { Component } from "react";
-import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
-import { Button, TextInput, HelperText } from "react-native-paper";
+import {
+  KeyboardAvoidingView,
+  StyleSheet,
+  View,
+  TouchableOpacity
+} from "react-native";
+import { Button, TextInput, HelperText, Text } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import axios from "axios";
 import deviceStorage from "../services/deviceStorage";
@@ -137,6 +142,15 @@ class SignInForm extends Component {
         >
           Submit
         </Button>
+        <TouchableOpacity
+          title="Sign Up"
+          accessibilityRole="button"
+          onPress={() => this.props.changeModal("SignUpModal")}
+          style={styles.signUp}
+        >
+          <Text style={styles.signUpText}>No account? No worries!</Text>
+          <Text style={styles.signUpLink}>Sign up here!</Text>
+        </TouchableOpacity>
       </KeyboardAvoidingView>
     );
   }
@@ -153,5 +167,24 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 12,
     top: 24
+  },
+  signUp: {
+    alignItems: "center",
+    width: "100%"
+  },
+  signUpLink: {
+    color: "black",
+    fontFamily: "RobotoBold",
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
+    width: 200
+  },
+  signUpText: {
+    color: "black",
+    fontFamily: "Roboto",
+    fontSize: 18,
+    textAlign: "center",
+    width: 200
   }
 });
