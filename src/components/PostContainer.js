@@ -11,12 +11,17 @@ class PostContainer extends React.Component {
         style={styles.container}
         contentContainerStyle={styles.content}
       >
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {this.props.posts.map(post => {
+          return (
+            <Post
+              key={post._id}
+              title={post.title}
+              picture={post.picture}
+              body={post.body}
+              id={post}
+            />
+          );
+        })}
       </ScrollView>
     );
   }

@@ -7,8 +7,14 @@ import PlateTrackerAppBar from "../components/PlateTrackerAppBar";
 import PostContainer from "../components/PostContainer";
 import AddPostModal from "../modals/AddPostModal";
 import SignInModal from "../modals/SignInModal";
+import axios from "axios";
+import { serverUrl } from "../config/constants";
 
 class NewsFeed extends React.Component {
+  state = {
+    posts: []
+  };
+
   handlePressAddPost = () => {
     if (this.props.verified) {
       this.props.changeModal("AddPostModal");
@@ -17,8 +23,19 @@ class NewsFeed extends React.Component {
     }
   };
 
+  getPosts = () => {
+    console.log("getting posts");
+    axios.get(`${serverUrl}/post/all`, {}).then(posts => {
+      this.setState({
+        posts: posts.data
+      });
+      console.log(this.state.posts);
+    });
+  };
+
   componentDidMount() {
     this.props.verifyLogin;
+    this.getPosts();
   }
 
   render() {
@@ -39,7 +56,7 @@ class NewsFeed extends React.Component {
         >
           Add a post
         </Button>
-        <PostContainer />
+        <PostContainer posts={this.state.posts} />
         <PlateTrackerAppBar
           changeIndex={this.props.changeIndex}
           verified={this.props.verified}

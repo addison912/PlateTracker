@@ -2,21 +2,19 @@
 import React from "react";
 import { Paragraph, Title, Card } from "react-native-paper";
 import { StyleSheet } from "react-native";
-import { image } from "../assets/images/base64";
+import { serverUrl } from "../config/constants";
 
 class Post extends React.Component {
   render() {
+    const { body, title, picture, user } = this.props;
+    console.log(`image url: ${serverUrl}${picture}`);
+
     return (
       <Card style={styles.card}>
-        <Card.Cover source={image} />
+        <Card.Cover source={{ uri: `${serverUrl}${picture}` }} />
         <Card.Content>
-          <Title>Stolen Motorcycle</Title>
-          <Paragraph>
-            The Abandoned Ship is a wrecked ship located on Route 108 in Hoenn,
-            originally being a ship named the S.S. Cactus. The second part of
-            the ship can only be accessed by using Dive and contains the
-            Scanner.
-          </Paragraph>
+          <Title>{title}</Title>
+          <Paragraph>{body}</Paragraph>
         </Card.Content>
       </Card>
     );
