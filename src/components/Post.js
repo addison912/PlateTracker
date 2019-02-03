@@ -2,12 +2,13 @@
 import React from "react";
 import { Paragraph, Title, Card } from "react-native-paper";
 import { StyleSheet } from "react-native";
+import { image } from "../assets/images/base64";
 
 class Post extends React.Component {
   render() {
     return (
       <Card style={styles.card}>
-        <Card.Cover source={require("../assets/images/motorcycle.jpg")} />
+        <Card.Cover source={image} />
         <Card.Content>
           <Title>Stolen Motorcycle</Title>
           <Paragraph>

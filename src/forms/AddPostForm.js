@@ -12,7 +12,6 @@ import { Button, TextInput } from "react-native-paper";
 import ImagePicker from "react-native-image-picker";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import axios from "axios";
-import deviceStorage from "../services/deviceStorage";
 import { serverUrl } from "../config/constants";
 
 const options = {
@@ -25,7 +24,7 @@ const options = {
 
 class AddPostForm extends Component {
   state = {
-    user: null,
+    user: {},
     text: "",
     outlinedText: "",
     title: "",
@@ -39,7 +38,8 @@ class AddPostForm extends Component {
       if (!err) {
         if (result !== null) {
           this.setState({ user: result });
-          console.log(this.state.user);
+          let user = JSON.parse(this.state.user);
+          console.log(user._id);
         }
       } else {
         console.log(err);
@@ -72,7 +72,8 @@ class AddPostForm extends Component {
   };
 
   handleSubmit = () => {
-    console.log(this.state.user);
+    let user = JSON.parse(this.state.user);
+    console.log(user);
     console.log("submitting post");
     let date = new Date();
     let post = {
@@ -80,7 +81,7 @@ class AddPostForm extends Component {
       body: this.state.body,
       date: date,
       picture: this.state.picture.uri,
-      userId: this.state.user._id
+      userId: user._id
     };
     axios({
       method: "POST",
