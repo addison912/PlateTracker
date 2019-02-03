@@ -100,6 +100,7 @@ export default class App extends React.Component {
               changeModal={this.changeModal}
               verified={this.state.verified}
               newJWT={this.newJWT}
+              verifyLogin={this.verifyLogin}
             />
           );
         case "NewsFeed":
@@ -110,6 +111,7 @@ export default class App extends React.Component {
               changeModal={this.changeModal}
               verified={this.state.verified}
               newJWT={this.newJWT}
+              verifyLogin={this.verifyLogin}
             />
           );
       }

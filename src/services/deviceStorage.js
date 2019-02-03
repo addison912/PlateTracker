@@ -13,6 +13,7 @@ const deviceStorage = {
       const value = await AsyncStorage.getItem("id_token");
       const user = await AsyncStorage.getItem("currentUser");
       if (value !== null) {
+        console.log(user);
         this.setState({
           jwt: value,
           currentUser: user,
@@ -22,6 +23,7 @@ const deviceStorage = {
         this.setState({
           loading: false
         });
+        console.log("user not found");
       }
     } catch (error) {
       console.log("AsyncStorage Error: " + error.message);

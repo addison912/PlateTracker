@@ -21,6 +21,7 @@ class AddPostModal extends Component {
               changeIndex={this.props.changeIndex}
               changeModal={this.props.changeModal}
               verified={this.props.verified}
+              verifyLogin={this.props.verifyLogin}
             />
           </View>
         </View>

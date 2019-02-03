@@ -1,7 +1,13 @@
 /* eslint-disable react-native/no-raw-text */
 /* eslint-disable react-native/no-color-literals */
 import React, { Component } from "react";
-import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
+import {
+  KeyboardAvoidingView,
+  StyleSheet,
+  View,
+  Text,
+  AsyncStorage
+} from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import ImagePicker from "react-native-image-picker";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -19,66 +25,83 @@ const options = {
 
 class AddPostForm extends Component {
   state = {
+    user: null,
     text: "",
     outlinedText: "",
     title: "",
     picture: null,
-    body: "",
-    user: {}
+    imageName: null,
+    body: ""
   };
+
+  componentDidMount() {
+    AsyncStorage.getItem("currentUser", (err, result) => {
+      if (!err) {
+        if (result !== null) {
+          this.setState({ user: result });
+          console.log(this.state.user);
+        }
+      } else {
+        console.log(err);
+      }
+    });
+  }
 
   selectPhoto = () => {
     console.log("pressed image button");
     ImagePicker.showImagePicker(options, response => {
-      console.log("Response = ", response);
-
       if (response.didCancel) {
         console.log("User cancelled image picker");
       } else if (response.error) {
         console.log("ImagePicker Error: ", response.error);
       } else {
-        const source = { uri: response.uri };
-
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-
+        const picture = {
+          uri: "data:image/jpeg;base64," + response.data,
+          imageType: response.type,
+          name: response.fileName
+        };
+        console.log(response);
+        // const source = { uri: "data:image/jpeg;base64," + response.data };
         this.setState({
-          picture: source
+          picture,
+          imageName: response.fileName
         });
+        console.log("picture set to state");
       }
     });
   };
-  //   handleSubmit = () => {
-  //     console.log("handle submit activated");
-  //     let user = {
-  //       username: this.state.username,
-  //       password: this.state.password
-  //     };
-  //     console.log(user);
-  //     axios({
-  //       method: "POST",
-  //       url: `${serverUrl}/user/login`,
-  //       data: user,
-  //       config: {
-  //         headers: {
-  //           Accept: "application/json",
-  //           "Content-Type": "application/x-www-form-urlencoded"
-  //         }
-  //       }
-  //     })
-  //       .then(res => {
-  //         console.log(res.data);
-  //         let user = res.data.user;
-  //         deviceStorage.saveItem("id_token", res.data.jwt);
-  //         deviceStorage.saveItem("currentUser", JSON.stringify(user));
-  //         this.props.newJWT(res.data.jwt, user);
-  //         this.props.changeIndex("NewsFeed");
-  //         this.props.changeModal(false);
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       });
-  //   };
+
+  handleSubmit = () => {
+    console.log(this.state.user);
+    console.log("submitting post");
+    let date = new Date();
+    let post = {
+      title: this.state.title,
+      body: this.state.body,
+      date: date,
+      picture: this.state.picture.uri,
+      userId: this.state.user._id
+    };
+    axios({
+      method: "POST",
+      url: `${serverUrl}/post`,
+      data: post,
+      config: {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      }
+    })
+      .then(res => {
+        console.log(res);
+        this.props.changeIndex("NewsFeed");
+        this.props.changeModal(false);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   render() {
     return (
@@ -100,12 +123,17 @@ class AddPostForm extends Component {
         <View style={styles.inputContainerStyle}>
           <TextInput
             mode="outlined"
-            maxLength={32}
+            maxLength={144}
             label="BODY"
             value={this.state.body}
-            onChangeText={title => this.setState({ title })}
+            numberOfLines={4}
+            multiline={true}
+            onChangeText={body => this.setState({ body })}
           />
           <Icon style={styles.requiredIcon} name={"asterisk"} size={10} />
+        </View>
+        <View style={styles.pictureName}>
+          <Text>{this.state.imageName}</Text>
         </View>
         <Button
           accessibilityRole="button"
@@ -156,6 +184,19 @@ const styles = StyleSheet.create({
     marginRight: 10,
     position: "absolute",
     top: 20
+  },
+  picture: {
+    alignItems: "center",
+    flex: 1,
+    height: 144,
+    marginBottom: 12
+  },
+  pictureName: {
+    alignItems: "center",
+    flex: 1,
+    height: 30,
+    marginBottom: 12,
+    marginTop: 12
   },
   requiredIcon: {
     color: "#f00",

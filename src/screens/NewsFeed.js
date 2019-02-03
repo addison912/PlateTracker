@@ -17,6 +17,10 @@ class NewsFeed extends React.Component {
     }
   };
 
+  componentDidMount() {
+    this.props.verifyLogin;
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -49,6 +53,7 @@ class NewsFeed extends React.Component {
           newJWT={this.props.newJWT}
           modal={this.props.modal}
           changeModal={this.props.changeModal}
+          verifyLogin={this.props.verifyLogin}
         />
       </View>
     );
