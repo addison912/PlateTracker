@@ -19,7 +19,7 @@ import PostContainer from "../components/PostContainer";
 
 class Profile extends React.Component {
   state = {
-    avatar: "",
+    avatar: { uri: "../assets/images/user.png" },
     userId: null,
     user: null,
     userName: "",

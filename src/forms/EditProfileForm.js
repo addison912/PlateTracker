@@ -23,7 +23,7 @@ const options = {
   }
 };
 
-class SignUpForm extends Component {
+class EditProfileForm extends Component {
   state = {
     text: "",
     outlinedText: "",
@@ -97,7 +97,7 @@ class SignUpForm extends Component {
       : this.setState({ validEmail: false });
   };
 
-  handleSignUp = () => {
+  handleSubmitEdit = () => {
     console.log("attempting to sign up user");
     if (
       this.state.validUsername &&
@@ -128,11 +128,11 @@ class SignUpForm extends Component {
         }
       })
         .then(res => {
-          console.log(res.data);
+          console.log(res);
           let user = res.data.user;
           deviceStorage.saveItem("id_token", res.data.jwt);
           deviceStorage.saveItem("currentUser", JSON.stringify(user));
-          this.props.newJWT(res.data.jwt, user);
+          this.props.newJWT(res.jwt, user);
           this.props.changeIndex("NewsFeed");
           this.props.changeModal(false);
         })
@@ -271,7 +271,7 @@ class SignUpForm extends Component {
           accessibilityRole="button"
           mode="contained"
           color="#000000"
-          onPress={this.handleSignUp}
+          onPress={this.handleSubmitEdit}
           style={styles.button}
         >
           Submit
@@ -290,7 +290,7 @@ class SignUpForm extends Component {
   }
 }
 
-export default SignUpForm;
+export default EditProfileForm;
 
 const styles = StyleSheet.create({
   button: {

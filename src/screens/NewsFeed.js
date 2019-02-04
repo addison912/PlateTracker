@@ -77,6 +77,10 @@ class NewsFeed extends React.Component {
     })
       .then(res => {
         console.log(res);
+        if (Array.isArray(this.state.posts) && this.state.posts.length > 0) {
+          this.state.posts.unshift(res.data);
+        }
+        console.log(this.state.posts);
         this.props.changeIndex("NewsFeed");
         this.props.changeModal(false);
       })

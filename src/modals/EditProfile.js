@@ -2,9 +2,9 @@
 /* eslint-disable react-native/no-color-literals */
 import React, { Component } from "react";
 import { Modal, View, StyleSheet } from "react-native";
-import AddPostForm from "../forms/AddPostForm";
+import EditProfileForm from "../forms/EditProfileForm";
 
-class AddPost extends Component {
+class EditProfile extends Component {
   static title = "Add Post";
 
   render() {
@@ -12,12 +12,12 @@ class AddPost extends Component {
       <Modal
         animationType="slide"
         transparent={false}
-        visible={this.props.modal === "AddPost"}
+        visible={this.props.modal === "EditProfile"}
         onRequestClose={() => {}}
       >
         <View style={modalStyles.modal}>
           <View>
-            <AddPostForm
+            <EditProfileForm
               changeModal={this.props.changeModal}
               changeIndex={this.props.changeIndex}
             />
@@ -28,7 +28,7 @@ class AddPost extends Component {
   }
 }
 
-export default AddPost;
+export default EditProfile;
 
 const modalStyles = StyleSheet.create({
   modal: {
