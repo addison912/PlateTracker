@@ -105,6 +105,11 @@ class SignInForm extends Component {
             value={this.state.username}
             error={!this.isUsernameValid()}
             onChangeText={username => this.setState({ username })}
+            returnKeyType={"next"}
+            onSubmitEditing={() => {
+              this.secondTextInput.focus();
+            }}
+            blurOnSubmit={false}
           />
           <HelperText type="error" visible={!this.isUsernameValid()}>
             Error: Only letters and numbers are allowed
@@ -118,6 +123,9 @@ class SignInForm extends Component {
             value={this.state.password}
             error={!this.state.validPassword}
             onChangeText={password => this.isPasswordValid(password)}
+            ref={input => {
+              this.secondTextInput = input;
+            }}
           />
           <Icon
             style={styles.icon}

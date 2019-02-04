@@ -25,6 +25,10 @@ class AddPostForm extends Component {
             label="TITLE"
             value={this.props.title}
             onChangeText={title => this.props.handleChangeTitle(title)}
+            returnKeyType={"next"}
+            onSubmitEditing={() => {
+              this.secondTextInput.focus();
+            }}
           />
           <Icon style={styles.requiredIcon} name={"star-of-life"} size={10} />
         </View>
@@ -37,6 +41,9 @@ class AddPostForm extends Component {
             numberOfLines={4}
             multiline={true}
             onChangeText={body => this.props.handleChangeBody(body)}
+            ref={input => {
+              this.secondTextInput = input;
+            }}
           />
           <Icon style={styles.requiredIcon} name={"asterisk"} size={10} />
         </View>

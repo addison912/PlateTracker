@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   },
   fab: {
     position: "absolute",
-    right: 140,
+    right: "30%",
     top: 192
   },
   profilPic: {

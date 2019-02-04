@@ -153,6 +153,10 @@ class SignUpForm extends Component {
             label="FIRST NAME"
             value={this.state.firstName}
             onChangeText={firstName => this.setState({ firstName })}
+            returnKeyType={"next"}
+            onSubmitEditing={() => {
+              this.secondTextInput.focus();
+            }}
           />
         </View>
         <View style={styles.inputContainerStyle}>
@@ -161,6 +165,13 @@ class SignUpForm extends Component {
             label="LAST NAME"
             value={this.state.lastName}
             onChangeText={lastName => this.setState({ lastName })}
+            returnKeyType={"next"}
+            onSubmitEditing={() => {
+              this.thirdTextInput.focus();
+            }}
+            ref={input => {
+              this.secondTextInput = input;
+            }}
           />
         </View>
         <View style={styles.inputContainerStyle}>
@@ -170,6 +181,13 @@ class SignUpForm extends Component {
             value={this.state.email}
             error={!this.state.validEmail}
             onChangeText={email => this.isEmailValid(email)}
+            returnKeyType={"next"}
+            onSubmitEditing={() => {
+              this.fourthTextInput.focus();
+            }}
+            ref={input => {
+              this.thirdTextInput = input;
+            }}
           />
           <Icon style={styles.icon} name={"star-of-life"} size={10} />
           <HelperText type="error" visible={!this.state.validEmail}>
@@ -183,6 +201,13 @@ class SignUpForm extends Component {
             value={this.state.username}
             error={!this.state.validUsername}
             onChangeText={username => this.isUsernameValid(username)}
+            returnKeyType={"next"}
+            onSubmitEditing={() => {
+              this.fifthTextInput.focus();
+            }}
+            ref={input => {
+              this.fourthTextInput = input;
+            }}
           />
           <Icon style={styles.icon} name={"star-of-life"} size={10} />
           <HelperText type="error" visible={!this.state.validUsername}>
@@ -197,6 +222,13 @@ class SignUpForm extends Component {
             value={this.state.password}
             error={!this.state.validPassword}
             onChangeText={password => this.isPasswordValid(password)}
+            returnKeyType={"next"}
+            onSubmitEditing={() => {
+              this.sixthTextInput.focus();
+            }}
+            ref={input => {
+              this.fifthTextInput = input;
+            }}
           />
           <Icon style={styles.icon} name={"star-of-life"} size={10} />
           <HelperText type="error" visible={!this.state.validPassword}>
@@ -213,6 +245,9 @@ class SignUpForm extends Component {
             onChangeText={confirmPassword =>
               this.confirmPassword(confirmPassword)
             }
+            ref={input => {
+              this.sixthTextInput = input;
+            }}
           />
           <Icon style={styles.icon} name={"star-of-life"} size={10} />
           <HelperText type="error" visible={!this.state.validConfirmPassword}>
