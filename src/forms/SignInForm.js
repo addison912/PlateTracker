@@ -80,7 +80,13 @@ class SignInForm extends Component {
         this.props.changeModal(false);
       })
       .catch(error => {
-        console.log(error);
+        if (
+          error.response &&
+          error.response.status &&
+          error.response.status == 404
+        ) {
+          alert("Incorrect username or password");
+        }
       });
   };
 

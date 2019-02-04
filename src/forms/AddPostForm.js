@@ -1,107 +1,14 @@
 /* eslint-disable react-native/no-raw-text */
 /* eslint-disable react-native/no-color-literals */
 import React, { Component } from "react";
-import {
-  KeyboardAvoidingView,
-  StyleSheet,
-  View,
-  Text,
-  AsyncStorage
-} from "react-native";
+import { KeyboardAvoidingView, StyleSheet, View, Text } from "react-native";
 import { Button, TextInput } from "react-native-paper";
-import ImagePicker from "react-native-image-picker";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import axios from "axios";
-import { serverUrl } from "../config/constants";
-
-const options = {
-  title: "Select an image",
-  storageOptions: {
-    skipBackup: true,
-    path: "images"
-  }
-};
 
 class AddPostForm extends Component {
   state = {
-    user: {},
     text: "",
-    outlinedText: "",
-    title: "",
-    picture: null,
-    imageName: null,
-    body: ""
-  };
-
-  componentDidMount() {
-    AsyncStorage.getItem("currentUser", (err, result) => {
-      if (!err) {
-        if (result !== null) {
-          this.setState({ user: result });
-          let user = JSON.parse(this.state.user);
-          console.log(user._id);
-        }
-      } else {
-        console.log(err);
-      }
-    });
-  }
-
-  selectPhoto = () => {
-    console.log("pressed image button");
-    ImagePicker.showImagePicker(options, response => {
-      if (response.didCancel) {
-        console.log("User cancelled image picker");
-      } else if (response.error) {
-        console.log("ImagePicker Error: ", response.error);
-      } else {
-        const picture = {
-          uri: "data:image/jpeg;base64," + response.data,
-          imageType: response.type,
-          name: response.fileName
-        };
-        console.log(response);
-        // const source = { uri: "data:image/jpeg;base64," + response.data };
-        this.setState({
-          picture,
-          imageName: response.fileName
-        });
-        console.log("picture set to state");
-      }
-    });
-  };
-
-  handleSubmit = () => {
-    let user = JSON.parse(this.state.user);
-    console.log(user);
-    console.log("submitting post");
-    let date = new Date();
-    let post = {
-      title: this.state.title,
-      body: this.state.body,
-      date: date,
-      picture: this.state.picture.uri,
-      userId: user._id
-    };
-    axios({
-      method: "POST",
-      url: `${serverUrl}/post`,
-      data: post,
-      config: {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        }
-      }
-    })
-      .then(res => {
-        console.log(res);
-        this.props.changeIndex("NewsFeed");
-        this.props.changeModal(false);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    outlinedText: ""
   };
 
   render() {
@@ -114,10 +21,10 @@ class AddPostForm extends Component {
         <View style={styles.inputContainerStyle}>
           <TextInput
             mode="outlined"
-            maxLength={32}
+            maxLength={64}
             label="TITLE"
-            value={this.state.title}
-            onChangeText={title => this.setState({ title })}
+            value={this.props.title}
+            onChangeText={title => this.props.handleChangeTitle(title)}
           />
           <Icon style={styles.requiredIcon} name={"star-of-life"} size={10} />
         </View>
@@ -126,31 +33,31 @@ class AddPostForm extends Component {
             mode="outlined"
             maxLength={144}
             label="BODY"
-            value={this.state.body}
+            value={this.props.body}
             numberOfLines={4}
             multiline={true}
-            onChangeText={body => this.setState({ body })}
+            onChangeText={body => this.props.handleChangeBody(body)}
           />
           <Icon style={styles.requiredIcon} name={"asterisk"} size={10} />
         </View>
         <View style={styles.pictureName}>
-          <Text>{this.state.imageName}</Text>
+          <Text>{this.props.imageName}</Text>
         </View>
         <Button
           accessibilityRole="button"
           mode="contained"
-          color="#85FF8E"
-          onPress={this.selectPhoto}
+          color=""
+          onPress={this.props.selectPhoto}
           style={styles.imageButton}
         >
           <Icon style={styles.imageIcon} name={"file-image"} size={24} />
-          Add an image
+          <Text> Add an image</Text>
         </Button>
         <Button
           accessibilityRole="button"
           mode="contained"
           color="#000000"
-          onPress={this.handleSubmit}
+          onPress={this.props.handleSubmit}
           style={styles.button}
         >
           Submit
@@ -180,17 +87,11 @@ const styles = StyleSheet.create({
     marginTop: 12
   },
   imageIcon: {
-    color: "#000",
+    color: "#FFF",
     left: 16,
     marginRight: 10,
     position: "absolute",
     top: 20
-  },
-  picture: {
-    alignItems: "center",
-    flex: 1,
-    height: 144,
-    marginBottom: 12
   },
   pictureName: {
     alignItems: "center",

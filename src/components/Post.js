@@ -5,13 +5,23 @@ import { StyleSheet } from "react-native";
 import { serverUrl } from "../config/constants";
 
 class Post extends React.Component {
+  state = {
+    picture: require("../assets/images/loading.gif"),
+    loading: true
+  };
+
+  componentDidMount() {
+    this.setState({
+      picture: { uri: `${serverUrl}${this.props.picture}` },
+      loading: false
+    });
+  }
   render() {
-    const { body, title, picture, user } = this.props;
-    console.log(`image url: ${serverUrl}${picture}`);
+    const { body, title } = this.props;
 
     return (
       <Card style={styles.card}>
-        <Card.Cover source={{ uri: `${serverUrl}${picture}` }} />
+        <Card.Cover source={this.state.picture} />
         <Card.Content>
           <Title>{title}</Title>
           <Paragraph>{body}</Paragraph>

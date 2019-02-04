@@ -22,6 +22,13 @@ class AddPostModal extends Component {
               changeModal={this.props.changeModal}
               verified={this.props.verified}
               verifyLogin={this.props.verifyLogin}
+              handleSubmit={this.props.handleSubmit}
+              selectPhoto={this.props.selectPhoto}
+              title={this.props.title}
+              body={this.props.body}
+              imageName={this.props.imageName}
+              handleChangeBody={this.props.handleChangeBody}
+              handleChangeTitle={this.props.handleChangeTitle}
             />
           </View>
         </View>

@@ -13,6 +13,15 @@ import { Button, TextInput, HelperText } from "react-native-paper";
 import axios from "axios";
 import deviceStorage from "../services/deviceStorage";
 import { serverUrl } from "../config/constants";
+import ImagePicker from "react-native-image-picker";
+
+const options = {
+  title: "Select an image",
+  storageOptions: {
+    skipBackup: true,
+    path: "images"
+  }
+};
 
 class SignUpForm extends Component {
   state = {
@@ -27,7 +36,33 @@ class SignUpForm extends Component {
     validUsername: true,
     validPassword: true,
     validConfirmPassword: true,
-    validEmail: true
+    validEmail: true,
+    avatar: null,
+    imageName: null
+  };
+
+  selectPhoto = () => {
+    console.log("pressed image button");
+    ImagePicker.showImagePicker(options, response => {
+      if (response.didCancel) {
+        console.log("User cancelled image picker");
+      } else if (response.error) {
+        console.log("ImagePicker Error: ", response.error);
+      } else {
+        const avatar = {
+          uri: "data:image/jpeg;base64," + response.data,
+          imageType: response.type,
+          name: response.fileName
+        };
+        console.log(response);
+        // const source = { uri: "data:image/jpeg;base64," + response.data };
+        this.setState({
+          avatar,
+          imageName: response.fileName
+        });
+        console.log("avatar set to state");
+      }
+    });
   };
 
   componentWillUnmount() {
@@ -78,7 +113,8 @@ class SignUpForm extends Component {
         lastName: this.state.lastName,
         username: this.state.username,
         password: this.state.password,
-        email: this.state.email
+        email: this.state.email,
+        avatar: this.state.avatar.uri
       };
       axios({
         method: "POST",
@@ -110,104 +146,111 @@ class SignUpForm extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView
-        style={styles.wrapper}
-        behavior="padding"
-        keyboardVerticalOffset={80}
-      >
-        <ScrollView>
-          <View style={styles.inputContainerStyle}>
-            <TextInput
-              mode="outlined"
-              label="FIRST NAME"
-              value={this.state.firstName}
-              onChangeText={firstName => this.setState({ firstName })}
-            />
-          </View>
-          <View style={styles.inputContainerStyle}>
-            <TextInput
-              mode="outlined"
-              label="LAST NAME"
-              value={this.state.lastName}
-              onChangeText={lastName => this.setState({ lastName })}
-            />
-          </View>
-          <View style={styles.inputContainerStyle}>
-            <TextInput
-              mode="outlined"
-              label="EMAIL"
-              value={this.state.email}
-              error={!this.state.validEmail}
-              onChangeText={email => this.isEmailValid(email)}
-            />
-            <Icon style={styles.icon} name={"star-of-life"} size={10} />
-            <HelperText type="error" visible={!this.state.validEmail}>
-              Error: Invalid email address
-            </HelperText>
-          </View>
-          <View style={styles.inputContainerStyle}>
-            <TextInput
-              mode="outlined"
-              label="USERNAME"
-              value={this.state.username}
-              error={!this.state.validUsername}
-              onChangeText={username => this.isUsernameValid(username)}
-            />
-            <Icon style={styles.icon} name={"star-of-life"} size={10} />
-            <HelperText type="error" visible={!this.state.validUsername}>
-              Error: Only letters and numbers are allowed
-            </HelperText>
-          </View>
-          <View style={styles.inputContainerStyle}>
-            <TextInput
-              secureTextEntry={true}
-              mode="outlined"
-              label="PASSWORD"
-              value={this.state.password}
-              error={!this.state.validPassword}
-              onChangeText={password => this.isPasswordValid(password)}
-            />
-            <Icon style={styles.icon} name={"star-of-life"} size={10} />
-            <HelperText type="error" visible={!this.state.validPassword}>
-              Error: Invalid password.
-            </HelperText>
-          </View>
-          <View style={styles.inputContainerStyle}>
-            <TextInput
-              secureTextEntry={true}
-              mode="outlined"
-              label="CONFIRM PASSWORD"
-              value={this.state.confirmPassword}
-              error={!this.state.validConfirmPassword}
-              onChangeText={confirmPassword =>
-                this.confirmPassword(confirmPassword)
-              }
-            />
-            <Icon style={styles.icon} name={"star-of-life"} size={10} />
-            <HelperText type="error" visible={!this.state.validConfirmPassword}>
-              Error: Passwords do not match.
-            </HelperText>
-          </View>
-          <Button
-            accessibilityRole="button"
-            mode="contained"
-            color="#000000"
-            onPress={this.handleSignUp}
-            style={styles.button}
-          >
-            Submit
-          </Button>
-          <Button
-            accessibilityRole="button"
-            mode="contained"
-            color="#EFCD00"
-            onPress={() => this.props.changeModal(false)}
-            style={styles.button}
-          >
-            Close
-          </Button>
-        </ScrollView>
-      </KeyboardAvoidingView>
+      <ScrollView>
+        <View style={styles.inputContainerStyle}>
+          <TextInput
+            mode="outlined"
+            label="FIRST NAME"
+            value={this.state.firstName}
+            onChangeText={firstName => this.setState({ firstName })}
+          />
+        </View>
+        <View style={styles.inputContainerStyle}>
+          <TextInput
+            mode="outlined"
+            label="LAST NAME"
+            value={this.state.lastName}
+            onChangeText={lastName => this.setState({ lastName })}
+          />
+        </View>
+        <View style={styles.inputContainerStyle}>
+          <TextInput
+            mode="outlined"
+            label="EMAIL"
+            value={this.state.email}
+            error={!this.state.validEmail}
+            onChangeText={email => this.isEmailValid(email)}
+          />
+          <Icon style={styles.icon} name={"star-of-life"} size={10} />
+          <HelperText type="error" visible={!this.state.validEmail}>
+            Error: Invalid email address
+          </HelperText>
+        </View>
+        <View style={styles.inputContainerStyle}>
+          <TextInput
+            mode="outlined"
+            label="USERNAME"
+            value={this.state.username}
+            error={!this.state.validUsername}
+            onChangeText={username => this.isUsernameValid(username)}
+          />
+          <Icon style={styles.icon} name={"star-of-life"} size={10} />
+          <HelperText type="error" visible={!this.state.validUsername}>
+            Error: Only letters and numbers are allowed
+          </HelperText>
+        </View>
+        <View style={styles.inputContainerStyle}>
+          <TextInput
+            secureTextEntry={true}
+            mode="outlined"
+            label="PASSWORD"
+            value={this.state.password}
+            error={!this.state.validPassword}
+            onChangeText={password => this.isPasswordValid(password)}
+          />
+          <Icon style={styles.icon} name={"star-of-life"} size={10} />
+          <HelperText type="error" visible={!this.state.validPassword}>
+            Error: Invalid password.
+          </HelperText>
+        </View>
+        <View style={styles.inputContainerStyle}>
+          <TextInput
+            secureTextEntry={true}
+            mode="outlined"
+            label="CONFIRM PASSWORD"
+            value={this.state.confirmPassword}
+            error={!this.state.validConfirmPassword}
+            onChangeText={confirmPassword =>
+              this.confirmPassword(confirmPassword)
+            }
+          />
+          <Icon style={styles.icon} name={"star-of-life"} size={10} />
+          <HelperText type="error" visible={!this.state.validConfirmPassword}>
+            Error: Passwords do not match.
+          </HelperText>
+        </View>
+        <View style={styles.pictureName}>
+          <Text>{this.state.imageName}</Text>
+        </View>
+        <Button
+          accessibilityRole="button"
+          mode="contained"
+          color=""
+          onPress={this.selectPhoto}
+          style={styles.imageButton}
+        >
+          <Icon style={styles.imageIcon} name={"file-image"} size={24} />
+          <Text> Add an image</Text>
+        </Button>
+        <Button
+          accessibilityRole="button"
+          mode="contained"
+          color="#000000"
+          onPress={this.handleSignUp}
+          style={styles.button}
+        >
+          Submit
+        </Button>
+        <Button
+          accessibilityRole="button"
+          mode="contained"
+          color="#EFCD00"
+          onPress={() => this.props.changeModal(false)}
+          style={styles.button}
+        >
+          Close
+        </Button>
+      </ScrollView>
     );
   }
 }
@@ -223,5 +266,22 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 16,
     top: 30
+  },
+  imageButton: {
+    marginBottom: 12,
+    marginTop: 12
+  },
+  imageIcon: {
+    color: "#FFF",
+    left: 16,
+    position: "absolute",
+    top: 20
+  },
+  pictureName: {
+    alignItems: "center",
+    flex: 1,
+    height: 24,
+    marginBottom: 12,
+    marginTop: 12
   }
 });

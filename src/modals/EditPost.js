@@ -20,6 +20,11 @@ class AddPost extends Component {
             <AddPostForm
               changeModal={this.props.changeModal}
               changeIndex={this.props.changeIndex}
+              handleSubmit={this.props.handleSubmit}
+              selectPhoto={this.props.selectPhoto}
+              title={this.props.title}
+              body={this.props.body}
+              imageName={this.props.imageName}
             />
           </View>
         </View>
