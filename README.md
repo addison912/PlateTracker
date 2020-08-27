@@ -1,6 +1,6 @@
 # Plate Tracker
 
-![plteTrck-carousel.png](http://www.addisonmoore.me/images/plteTrck-carousel.png)
+![plteTrck-carousel.png](https://raw.githubusercontent.com/addison912/portfolio-rebrand/master/public/assets/projects/plate-tracker/phonePic.png)
 
 Plate Tracker is a React-Native mobile application built around the OpenALPR library (Automatic License Plate Recognition). It allows users to scan vehicle license plates and check them against our database of over 12000 stolen vehicles. Users can register their stolen vehicles in the app and receive a notification if their license plate is scanned.
 
